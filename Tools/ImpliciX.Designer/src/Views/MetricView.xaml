@@ -1,0 +1,38 @@
+<UserControl x:Class="ImpliciX.Designer.Views.MetricView" 
+  xmlns="https://github.com/avaloniaui" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400">
+
+  <DockPanel LastChildFill="True" >
+    <ItemsControl DockPanel.Dock="Top">
+      <WrapPanel>
+        <TextBlock Text="{Binding Main.Name}" />
+      </WrapPanel>
+      <WrapPanel>
+        <TextBlock Text="{Binding Main.Details}" />
+      </WrapPanel>
+      <WrapPanel>
+        <TextBlock Text="Sample Period:" />
+        <TextBlock Text="{Binding SamplePeriod}" />
+      </WrapPanel>
+      <WrapPanel>
+        <TextBlock Text="Storage Period:" />
+        <TextBlock Text="{Binding StoragePeriod}" />
+      </WrapPanel>
+      <ItemsControl ItemsSource="{Binding Inclusions}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="Include" Margin="0,0,10,0" />
+              <TextBlock Text="{Binding Name}" Margin="0,0,10,0" />
+              <TextBlock Text="as" Margin="0,0,10,0" />
+              <TextBlock Text="{Binding Details}" />
+            </WrapPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ItemsControl>
+  </DockPanel>
+</UserControl>

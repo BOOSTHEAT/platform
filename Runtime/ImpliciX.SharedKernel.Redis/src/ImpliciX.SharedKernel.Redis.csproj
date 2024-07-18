@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.6.96" />
+  </ItemGroup>
+  <Import Project="..\..\..\Language.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

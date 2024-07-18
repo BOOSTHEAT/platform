@@ -1,0 +1,71 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Runtime/*
+      - azure-pipelines-runtime.yml
+
+resources:
+  pipelines:
+    - pipeline: ImpliciXDesigner
+      project: ImpliciX
+      source: designer
+      branch: master
+      trigger: none
+    
+stages:
+- stage: regularBuild
+  jobs:
+  - job: regularBuild
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    variables:
+      buildConfiguration: 'Release'
+      
+    steps:
+    - template: azure-pipelines-template-dotnet-setup.yml
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: Runtime/**/*.csproj
+        feedsToUse: 'config'
+        nugetConfigPath : "./NuGet.Config"
+  
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: Runtime/**/*.csproj
+        arguments: -c $(buildConfiguration) /p:AssemblyVersion=$(Build.BuildNumber)
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: test
+        projects: Runtime/**/tests/*.csproj
+        arguments: -c DEBUG --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      displayName: Run Tests
+      
+    - task: NuGetCommand@2
+      inputs:
+        command: pack
+        packagesToPack: 'Runtime/ImpliciX.Runtime/src/runtime.nuspec'
+        versioningScheme: byBuildNumber
+        packDestination: '$(Build.ArtifactStagingDirectory)'
+      displayName: Create nupkg
+
+    - task: NuGetCommand@2
+      inputs:
+        command: push
+        feedsToUse: select
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+        nuGetFeedType: internal
+        publishVstsFeed: 'ImpliciX'
+      displayName: Publish to artifacts feed
+    
+    - template: azure-pipelines-template-language-tag.yml

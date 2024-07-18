@@ -1,0 +1,16 @@
+steps:
+  - task: UseDotNet@2
+    displayName: 'Install .net core 7.0'
+    inputs:
+      packageType: sdk
+      version: '7.0.408'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - task: UseDotNet@2
+    displayName: 'Install .net core 8.0'
+    inputs:
+      packageType: sdk
+      version: '8.0.300'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - task: NuGetAuthenticate@0

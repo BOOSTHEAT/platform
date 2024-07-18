@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ImpliciX.Designer.Views.RemoteOperationsView">
+    <TabControl TabStripPlacement="Bottom">
+        <TabItem Header="Overview">
+            <ContentControl Content="{Binding RemoteDevice}" />
+        </TabItem>
+        <TabItem Header="Properties" IsSelected="True">
+            <ContentControl Content="{Binding LiveProperties}" />
+        </TabItem>
+        <TabItem Header="Commands">
+            <ContentControl Content="{Binding Commands}" />
+        </TabItem>
+
+    </TabControl>
+</UserControl>

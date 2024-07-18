@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+    <Import Project="..\..\..\Language.targets" />
+    <ItemGroup>
+      <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+      <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+      <ProjectReference Include="..\..\..\Data\ImpliciX.Data\src\ImpliciX.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="WatsonWebsocket" Version="4.0.11" />
+    </ItemGroup>
+
+</Project>

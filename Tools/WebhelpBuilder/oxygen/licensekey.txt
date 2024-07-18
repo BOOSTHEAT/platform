@@ -1,0 +1,17 @@
+Registration_Name=Emilien Benhard
+
+Company=BOOSTHEAT
+
+Category=Enterprise
+
+Component=Scripting
+
+Version=23
+
+Number_of_Licenses=1
+
+Date=03-19-2021
+
+Maintenance=0
+
+SGN=MCwCFDHqbEg3mnWJP3aRINhR1KzUak8tAhQqzx4OUVU1QD2SS8cU9Zx8Y4uAJQ\=\=

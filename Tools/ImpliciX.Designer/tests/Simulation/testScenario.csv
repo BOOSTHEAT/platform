@@ -1,0 +1,9 @@
+00:00:00,command,general:labmode:start,virtual
+00:00:10,properties,service:dhw:top_temperature:measure,1200
+,,service:dhw:top_temperature:status,Success
+,,service:dhw:bottom_temperature:measure,300
+,,service:dhw:bottom_temperature:status,Success
+00:00:20,command,production:main_circuit:SWITCH,InternalFlow
+00:00:40,properties,service:heating:differential_temperature_setpoint,20
+,,service:heating:thermostat:demand,On
+00:01:00,command,general:labmode:stop,

@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NFluent" Version="2.8.0" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+        <PackageReference Include="MetadataExtractor" Version="2.7.2" />
+        <PackageReference Include="Testcontainers" Version="3.2.0" />
+    </ItemGroup>
+
+    <Import Project="..\..\..\Language.targets" />
+
+    <ItemGroup>
+      <ProjectReference Include="..\src\ImpliciX.ToQml.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="build.sh">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="assets/**/*" />
+        <EmbeddedResource Include="translations.csv" />
+        <None Include="referenceImages/*">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="QmlTests/Root/**/*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+    
+</Project>

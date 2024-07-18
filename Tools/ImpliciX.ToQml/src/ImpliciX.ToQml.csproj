@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CsvHelper" Version="15.0.5" />
+      <PackageReference Include="MetadataExtractor" Version="2.7.2" />
+      <ProjectReference Include="..\..\..\Data\ImpliciX.Data\src\ImpliciX.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>ImpliciX.ToQml.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+    
+    <Import Project="..\..\..\Language.targets" />
+
+    <ItemGroup>
+        <EmbeddedResource Include="Qml/**/*" />
+    </ItemGroup>
+
+</Project>

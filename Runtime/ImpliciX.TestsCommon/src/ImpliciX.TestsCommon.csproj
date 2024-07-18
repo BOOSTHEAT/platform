@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NFluent" Version="2.7.1" />
+    <PackageReference Include="nunit" Version="3.12.0" />
+  </ItemGroup>
+
+  <Import Project="..\..\..\Language.targets" />
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+    <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

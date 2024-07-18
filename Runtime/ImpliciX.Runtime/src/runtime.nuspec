@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>ImpliciX.Runtime</id>
+        <version>0</version>
+        <authors>BOOSTHEAT</authors>
+        <owners>BOOSTHEAT</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>--</description>
+        <dependencies>
+            <group targetFramework="netstandard2.1">
+                <dependency id="InfluxDB.Client" version="1.12.0" />
+                <dependency id="Microsoft.Azure.Devices.Client" version="1.35.0" />
+                <dependency id="Microsoft.Azure.Devices.Provisioning.Client" version="1.17.1" />
+                <dependency id="Microsoft.Azure.Devices.Provisioning.Transport.Mqtt" version="1.15.1" />
+                <dependency id="Microsoft.CSharp" version="4.7.0" />
+                <dependency id="Microsoft.Extensions.Configuration" version="3.1.1" />
+                <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.1" />
+                <dependency id="Microsoft.Extensions.Hosting" version="3.1.1" />
+                <dependency id="Microsoft.Win32.Primitives" version="4.3.0" />
+                <dependency id="Mono.Posix.NETStandard" version="1.0.0.0" />
+                <dependency id="MQTTnet" version="4.2.0.706" />
+                <dependency id="NModbus" version="3.0.81" />
+                <dependency id="Newtonsoft.Json" version="12.0.3" />
+                <dependency id="Serilog" version="2.9.0" />
+                <dependency id="Serilog.Extensions.Hosting" version="3.0.0" />
+                <dependency id="Serilog.Settings.Configuration" version="3.1.0" />
+                <dependency id="Serilog.Sinks.Console" version="3.1.1" />
+                <dependency id="Serilog.Sinks.Seq" version="4.0.0" />
+                <dependency id="StackExchange.Redis" version="2.6.96" />
+                <dependency id="NRedisStack" version="0.6.0"/>
+                <dependency id="System.Diagnostics.Debug" version="4.3.0" />
+                <dependency id="System.IO.FileSystem" version="4.3.0" />
+                <dependency id="System.Reactive" version="4.4.1" />
+                <dependency id="System.Reactive.Linq" version="4.4.1" />
+                <dependency id="System.ValueTuple" version="4.5.0" />
+                <dependency id="Tmds.DBus" version="0.9.1" />
+                <dependency id="WatsonWebsocket" version="4.0.11" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin/Release/net8.0/*.dll" target="lib/net8.0" />
+    </files>
+</package>

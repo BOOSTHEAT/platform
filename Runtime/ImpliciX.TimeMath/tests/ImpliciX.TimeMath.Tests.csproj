@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <RootNamespace>ImpliciX.TimeMath.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+        <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.8.35" />
+        <PackageReference Include="SpecFlow.NUnit" Version="3.8.7" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="Moq" Version="4.18.4" />
+        <PackageReference Include="NFluent" Version="2.8.0" />
+        <PackageReference Include="Nunit" Version="3.13.3" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.1" />
+        <PackageReference Include="DynamicExpresso.Core" Version="2.16.1" />
+
+    </ItemGroup>
+
+    <Import Project="..\..\..\Language.targets" />
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+        <ProjectReference Include="..\..\ImpliciX.Driver.Common\tests\ImpliciX.Driver.Common.Tests.csproj" />
+        <ProjectReference Include="..\..\ImpliciX.TestsCommon\src\ImpliciX.TestsCommon.csproj" />
+        <ProjectReference Include="..\src\ImpliciX.TimeMath.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="settings\*.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Remove="**\*~" />
+        <None Remove="LivingDoc.html" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Features\**\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Features\*\*.feature.cs" />
+    </ItemGroup>
+
+</Project>

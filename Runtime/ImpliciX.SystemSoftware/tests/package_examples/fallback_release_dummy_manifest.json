@@ -1,0 +1,62 @@
+{
+  "content": {
+    "APPS": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.8.23.1",
+        "revision": "2021.8.23.1",
+        "target": "app1",
+        "filename": "app1.zip"
+      }
+    ],
+    "MCU": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu1",
+        "filename": "mcu1.bin"
+      },
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu2",
+        "filename": "mcu2.bin"
+      },
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu3",
+        "filename": "mcu3.bin"
+      }
+    ],
+    "BSP": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": 20210804.1,
+        "revision": "2021.6.15.1",
+        "target": "bsp",
+        "filename": "bsp.raucb"
+      }
+    ]
+  },
+  "device": "BOOSTHEAT.20_V2",
+  "sha256": "a7c0f2cafd266277c2987d0e88a0a384b402224548806aee9f5734627cec0407",
+  "date": "2021-08-23T10:04:24",
+  "Documentation": {
+    "Files": [
+      {
+        "target": "Configuration",
+        "filename": "datamodel.2.3.4.613.json"
+      },
+      {
+        "target": "AlarmDatabase",
+        "filename": "alarmdatabase.2.3.4.613.json"
+      }
+    ],
+    "Version": "2.3.4.613"
+  },
+  "revision": "2.3.4.613"
+}

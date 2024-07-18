@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+      <AvaloniaVersion>11.0.10</AvaloniaVersion>
+        <AvaloniaPanAndZoomVersion>11.0.0.2</AvaloniaPanAndZoomVersion>
+        <DockAvaloniaVersion>11.0.0.5</DockAvaloniaVersion>
+        <AvaloniaGraphControlVersion>0.6.1</AvaloniaGraphControlVersion>
+        <AvaloniaPrintToPDFVersion>0.4.0</AvaloniaPrintToPDFVersion>
+        <MessageBoxAvaloniaVersion>3.1.5.1</MessageBoxAvaloniaVersion>
+    </PropertyGroup>
+</Project>

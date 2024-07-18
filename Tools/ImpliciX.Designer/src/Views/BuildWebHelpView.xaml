@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ImpliciX.Designer.ViewModels"
+        mc:Ignorable="d" Width="800" Height="120"
+        x:Class="ImpliciX.Designer.Views.BuildWebHelpView" Icon="/Assets/avalonia-logo.ico"
+        Title="Build WebHelp"
+        d:DataContext="{d:DesignInstance vm:BuildWebHelpViewModel}"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10" RowDefinitions="Auto,10,Auto,10,Auto" ColumnDefinitions="Auto,*,120"
+          HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <!-- Input Folder -->
+        <Button Grid.Row="0" Grid.Column="0" Padding="5" Command="{Binding SelectInputFolderCommand}"
+                Content="Select Input folder (.dita files)..." />
+        <Border Margin="10,0,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1"
+                BorderBrush="{x:Static Brushes.Gray}">
+            <TextBox VerticalAlignment="Center" IsReadOnly="True" BorderThickness="0"
+                     Text="{Binding InputFolderPath, Mode=OneWay}" />
+        </Border>
+
+        <!-- Output Folder -->
+        <Button Grid.Row="2" Grid.Column="0" Padding="5" Command="{Binding SelectOutputFolderCommand}"
+                Content="Select output folder..." />
+        <Border Margin="10,0,0,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1"
+                BorderBrush="{x:Static Brushes.Gray}">
+            <TextBox VerticalAlignment="Center" IsReadOnly="True" BorderThickness="0"
+                     Text="{Binding OutputFolderPath, Mode=OneWay}" />
+        </Border>
+
+        <!-- Create WebHelp Action -->
+        <Button Grid.Row="4" Grid.Column="2" Padding="5" Command="{Binding CreateWebHelpCommand}"
+                Content="Create WebHelp" />
+
+    </Grid>
+
+</Window>

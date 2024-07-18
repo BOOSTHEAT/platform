@@ -1,0 +1,8 @@
+{
+  "Setups": {
+    "single_setup": {
+      "Scheduler": "MultiThreaded",
+      "Time": "Real"
+    }
+  }
+}

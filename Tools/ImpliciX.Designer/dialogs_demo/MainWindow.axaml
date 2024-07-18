@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:dialogs_demo"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Width="800" Height="600"
+        x:Class="dialogs_demo.MainWindow"
+        Title="dialogs_demo"
+        x:DataType="local:Data">
+    <StackPanel>
+        <TextBox Text="{Binding TheTitle}"></TextBox>
+        <TextBox Text="{Binding TheMessage}"></TextBox>
+        <StackPanel Orientation="Horizontal">
+            <ListBox ItemsSource="{Binding IconChoice}" SelectedIndex="{Binding SelectedIconIndex}"></ListBox>
+            <ListBox ItemsSource="{Binding ButtonsChoiceDisplay}" SelectedIndex="{Binding SelectedButtonsIndex}"></ListBox>
+        </StackPanel>
+        <Button Command="{Binding ShowMessageBox}">Show Message Box</Button>
+        <Button Command="{Binding EnterPassword}">Enter Password</Button>
+        <TextBlock Text="{Binding Result}"></TextBlock>
+    </StackPanel>
+</Window>

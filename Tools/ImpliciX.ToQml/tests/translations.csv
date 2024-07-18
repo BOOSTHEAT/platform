@@ -1,0 +1,290 @@
+key,en,fr,de
+AllFine,Everything is ok,Tout va bien,Alles in Ordnung
+Water_Pressure,Heating pressure,Pression chauffage,Heizung
+Glycol_Pressure,Glycol pressure,Pression glycol,Glykol
+HotWater,Hot water,Eau chaude,Warmwasser
+Heating_Circuit1,circuit 1,circuit 1,Heizkreis 1
+Heating_Circuit2,circuit 2,circuit 2,Heizkreis 2
+Off_Flipswitch,off,off,off
+On_Flipswitch,on,on,on
+Storage_Temp,Storage T° in the hot water tank,T° de stockage dans le ballon,T° im Warmwasserspeicher
+Eco_Mode,Eco,Éco,Öko
+Comfort_Mode,Comfort,Confort,Komfort
+Eco_Mode_Description,Optimizing heating production for energy savings,Optimisation de la production d'eau chaude pour des économies d'énergie,Energieeffiziente Warmwasserbereitung
+Heater_Eco_Mode_Description,Optimizing hot water production for energy savings,Optimisation de la production de chaleur pour maximiser les économies d'énergie,Optimierung der Wärmeerzeugung zur Maximierung der Energieeinsparung
+Comfort_Mode_Description,Water kept warm continuously,Eau maintenue chaude en permanence,"Permanente Warmwasser-
+nachwärmung"
+Heater_Comfort_Mode_Description,Maximized system responsiveness for heating supply,Réactivité du système maximisée pour la fourniture de chauffage,Systemreaktivität maximiert für die Wärmeversorgung
+Heating,Heating,Chauffage,Heizung
+Glycol,Glycol,Glycol,Glykol
+Settings_Title,Settings,Paramètres,Einstellungen
+Settings_Language_Title,Languages,Langues,Sprachen
+Language_German,Deutsch,Deutsch,Deutsch
+Language_English,English,English,English
+Language_French,Français,Français,Français
+Settings_DateTime_Title,Date/Time,Date/Heure,Datum Uhrzeit
+Timezone,Timezone,Fuseau horaire,Zeitzone
+Settings_TempUnit_Title,T° unit,Unité de T°,Temper atureinheit
+Settings_Brightness,Brightness,Luminosité,Helligkeit
+Version_Title,Versions,Versions,Versionen
+Soft_Release_Version,Software,Logiciel,Software
+Ok_Button,OK,OK,OK
+Continue_Button,Continue,Continuer,Fortsetzen
+Cancel_Button,Cancel,Annuler,Stornieren
+services_disabled_confirmation,The DHW and heating services will be disabled.,Les services ECS et chauffage vont être désactivés pour les réglages.,Der Warmwasser- und Heizungsbetrieb werden deaktiviert.
+unavailable_service_message,Service not available. Fix the issue and relaunch your action.,Service indisponible. Veuillez corriger le problème puis relancer votre action.,Der Dienst ist nicht verfügbar. Bitte beheben Sie das Problem und starten Sie Ihre Aktion erneut.
+deactivation_message,Service deactivation in progress,Désactivation des services en cours,Deaktivierung der laufenden Service
+wait_commission_start,Commissioning start in progress,Démarrage de la mise en service en cours,Inbetriebnahme läuft
+circuit_dhw,DHW circuit,Circuit ECS,Warmwasserkreis
+circuit_heating,Heating circuit,Circuit chauffage,Heizkreis
+circuit_co2,CO2 circuit,Circuit CO2,CO2-Kreis
+circuit_glycol,Glycol circuit,Circuit glycol,Glykolwasserkreis
+circuit_compressor,Compressor view,Vue compresseur,Kompressorkreis
+dhw_drawing,DHW drawing,Puisage ECS,TWW-Zapfstelle
+city_water,"City
+water",Eau de ville,Kaltwasser
+dhw_tank,DHW tank,Ballon ECS,TWW-Speicher
+dhw_exchanger,DHW exchanger,Echangeur ECS,TWW-Wärmetauscher
+dhw_pump,DHW pump,Circulateur ECS,TWW-Zirkulations-pumpe
+glycol_pump,Glycol pump,Circulateur glycol,Glykol-zirkulationspumpe
+heating_pump,Heating circulating pump,Circulateur chauffage,Heizungs-umwälzpumpe
+heating_water,Heating water,Eau de chauffage,"Heizungs
+wasser"
+dhw_status,Status,Statut,Status
+dhw_storage_temp,Storage T°,T° de stockage,T° Speicher
+dhw_program,Program,Programme,Programm
+DHW_service,DHW Service,Service ECS,Betrieb TWW
+table_circuit_production,Production,Production,Produktion
+heating_supply,Heating supply,Départ chauffage,"Heizungs-
+vorlauf"
+heating_return,Heating return,Retour chauffage,"Heizungs-
+rücklauf"
+heat_pump,Heat pump,Pompe à chaleur,Wärmepumpe
+condensing_boiler,Condensing boiler,Chaudière à condensation,Brennwerttherme
+defrost_exchanger,Defrost exchanger,Échangeur de dégivrage,Wärmetauscher auftauen
+boiler_auxiliary,Auxiliary,Auxiliaire,Hilfs-
+tech_mode,Installer mode,Mode installateur,Installationsmodus
+tech_mode_main_settings,Main settings,Paramétrage principal,Haupteinstellung
+tech_mode_tech_views,Technical views,Vues techniques,Technische Ansichten
+alarm_title,Current Alarms,Alarmes en cours,Aktuelle Störungen
+alarm_reset,Reset this alarm,Ré-armer cette alarme,Reset Alarm
+alarm_details_title,Alarm Details,Details de l'alarme,Alarmdetails
+no_alarm,No current alarm,Pas d'alarme en cours,Keine aktuelle Störung
+Low,Low temperature,Basse température,Niedrige Temperatur
+Medium,Medium temperature,Moyenne température,Mittlere Temperatur
+High,High temperature,Haute température,Hohe Temperatur
+VeryHigh,Very high temperature,Très haute température,Sehr hohe Temperatur
+tech_mode_gaz_selection,Gas selection,Choix du gaz,Gasauswahl
+tech_mode_emitter_selection,Emitter selection,Choix de l'émetteur,Wahl des Heizkörpers
+tech_mode_regulation_mode,Control mode,Mode de régulation,Regelungsmodus
+tech_mode_reset_label,Reset to factory defaults,Réinitialiser les paramètres d'usine,Auf Werkseinstellungen zurücksetzen
+tech_mode_reset_button,Reset,Reset,Reset
+burner_settings,Combustion settings,Réglages combustions,"Verbrennungs-
+einstellungen"
+burner_settings_choice,Choose your settings:,Choisir le réglage:,Wählen Sie die Einstellung:
+principal_param,Main settings,Paramétrage principal,Haupteinstellungen
+factory_reset,Reset factory parameters,Recharger les paramètres d'usine,Werkseinstellungen zurücksetzen
+reset,Reset,Reset,Reset
+mode_ecs,ECS mode,Mode ECS,Warmwassermodus
+mode_heating,Heating mode,Mode chauffage,Heizungmodus
+tech_mode_combustion,Combustion settings,Réglages combustions,Einstellung der Verbrennung
+tech_mode_combustion_setting,Combustion settings power,Réglage combustion puissance,Einstellung der Verbrennung Leistung
+tech_mode_combustion_min,MIN,MIN,MIN
+tech_mode_combustion_max,MAX,MAX,MAX
+tech_mode_start,Start,Commencer,Starten
+tech_mode_settings_done,Settings done,Réglages terminés,Einstellungen OK
+tech_mode_wait_before_measure,Wait before measurement ...,Patienter avant mesure ...,Bis zur Messung abwarten ...
+tech_mode_ready_to_measure,Ready to measure,Vous pouvez faire la mesure.,Sie können die Messung durchführen.
+tech_mode_hydraulic_parameters,Hydraulic parameters,Réglages hydrauliques, Hydraulische Einstellungen
+tech_mode_degassing,Degassing,Dégazage,Entgasung
+degassing_pump,Pump,Circulateur,Pumpe
+degassing_heating_ecs_valve,Heating/DHW valve,Vannes ECS/Chauffage,Ventil TWW/Heizung
+degassing_defrost_heating_valve,Defrost/Heating valve,Vanne Dégivrage/Chauffage,Ventil Abtauen/Heizung
+degassing_defrost_glycol_valve,Defrost/Glycol valve,Vanne Dégivrage/Glycol,Ventil Abtauen/Glykol
+hot_water_acronym,DHW,ECS,TWW
+combustion_settings_configuration,Configuration,Configuration,Einstellungen
+combustion_settings_heating_supply_temp,Heating supply T°,T° départ chauffage,T-Vorlauf
+max_heating_supply_temp,Max T°,T° limite,T-Vorlauf max
+heating_service,Heating service,Service chauffage,Heizungsservice
+combustion_settings_heater1_temp,T° heater 1,T° heater 1,T° heater 1
+combustion_settings_heater2_temp,T° heater 2,T° heater 2,T° heater 2
+combustion_settings_pmin,Settings Pmin,Réglages Pmin,Einstellungen P min
+combustion_settings_02_decrease,Decrease O2,Diminution O2,Verringerung O2 Wert
+combustion_settings_warning,Careful!,Attention !,Achtung!
+combustion_settings_warning_description,Gently tighten the screw,Action très courte sur cette vis,Sehr kurzes Drehmoment an Schraube
+combustion_settings_pmax,Settings Pmax,Réglages Pmax,Einstellungen P max
+combustion_settings_02_increase,Increase O2,Augmentation O2,Erhöhung O2 Wert
+main_settings_service_title,Service,Service,Service
+main_settings_generator_title,Generator,Générateur,Wärmegenerator
+Running,running,en cours,laufend
+Failure,failure,en erreur,fehlerhaft
+StandBy,stand by,en attente,in Bereitschaft
+Disabled,disabled,désactivé,deaktiviert
+Other,others,autres,sonstiges
+ServiceDeactivation,start in progress,démarrage en cours,start in arbeit
+control_mode_External,Evohome thermostat,Thermostat Evohome, Evohome Thermostat
+control_mode_ConstantSetpoint,Constant setpoint,T° fixe, gewählte Temperatur
+control_mode_HeatingCurve,Heating curve,Loi d'eau,Heizkurve
+control_mode_title,Control Mode,Mode de régulation,Steuerung
+Flue_temp_after_retrieval1,Flue t°  ,T° fumées , Abgastemperatur 
+Flue_temp_after_retrieval2,after,après,nach
+Flue_temp_after_retrieval3, recovery, récupération, Rückgewinnung
+gas_fan,Gas fan,Ventilateur gaz,Gaslüfter
+speed,Speed,Vitesse,Geschwindigkeit
+gas_power,Estimated gas power,Puissance gaz estimée,Geschätzte Gasleistung
+heater1,heater 1,heater 1,heater 1
+heater2,heater 2,heater 2,heater 2
+heater3,heater 3,heater 3,heater 3
+unit_rpm,rpm,rpm,Drehzahl
+unit_C,°C,°C,°C
+unit_kw,kW,kW,kW
+unit_%,%,%,%
+unit_liter_per_minute,L/min,L/min,L/min
+heating_circuit_table_control_mode,Mode,Mode,Modus
+thermostat,Thermostat,Thermostat,Thermostat
+thermostat_need,Thermostat need,Demande thermostat,Wärmeanforderung Thermostat
+setpoint,Setpoint,T° de consigne,Solltemperatur
+outdoor_temp,Outdoor T°,T° extérieure,Außentemperatur
+heating_circuit_table_boiler_answer,Boiler answer,Réponse chaudière,Antwort Heizung
+glycol_circuit,Glycol circuit,Circuit glycol,Glykolkreis
+outdoor_air,Outdoor air,Air extérieur,Außenluft
+extrernal_unit,External unit,Unité extérieure,Außeneinheit
+evaporator,Evaporator,Evaporateur,Verdampfer
+CO2,CO2,CO2,CO2
+glycol,Glycol,Glycol,Glykol
+fan_pourcentage,Fan pourcentage,Pourcentage ventilateur,Anteil Lüfter
+eu_fan,EU Fan,Ventilateur UE,Ventilator AI
+co2_circuit,CO2 circuit,Circuit CO2,CO2 Kreis
+lp_expansion_valves,LP expansion valves,Détendeur BP, Druckminderungsventil ND
+flash_tank,Flash tank,Réservoir flash, Flash Tank
+hp_expansion_valves,HP expansion valves,Détendeur HP, Druckminderungsventil HD
+gas_cooler,Gas cooler,Gaz cooler,Gaskühler
+real_superheat,Real superheat,Surchauffe réelle,Tatsächliche Überhitzung
+superheat_setpoint,Superheat setpoint,Consigne surchauffe,Sollwert Überhitzung
+optimal_pressure,Optimal pressure,Pression optimale,Optimaler Druck
+no_help,No help available on this screen,Pas d'aide disponible pour cet écran,Noch keine Hilfe verfügbar für den Bildchirm
+pressure_nominale_help,Normal,Pression normale,Normaler
+pressure_insufficient_help,insufficient pressure,insuffisante,nicht ausreichender Druck
+alarms_access,Alarms access,Accès aux alarmes,Zugang zu den Alarmen
+home,Home,Accueil,Startseite
+hot_water_service,Hot water service,Service eau chaude,Warmwasser Service
+settings,Settings,Paramètres,Einstellungen
+installer_mode,Installer mode,Mode installateur,Installateur Modus
+help,Help,Aide,Hilfe
+help_enable_hot_water,Enable or disable the district hot water,Activer ou désactiver l'eau chaude sanitaire,Warmwasser ein- oder ausschalten
+help_stockage_temp,Touch to change the storage temperature,Appuyer pour modifier la température de stockage,Speichertemperatur beim Drücken einstellen
+help_heat_pump,Heat pump,Pompe à chaleur,Wärmepumpe
+help_water_tank,The tank water is,L'eau chaude du ballon est,Wasser des Speichers
+help_water_tank_hot,hot,déjà chaude,schon warm
+help_water_tank_progress,in progress,en cours de chauffe,heizt auf
+help_condensing_boiler,Condensing boiler,Chaudière à condensation,Brennwerttherme
+help_disabled,disabled,à l'arrêt,deaktiviert
+help_standby,stand by,en attente,in Bereitschaft
+help_running,running,en fonctionnement,laufend
+help_enable_heating,Enable or disable the heating service,Activer ou désactiver le chauffage,Heizung ein oder ausschalten
+help_heater_on,The BOOSTHEAT.20 heats your home,La BOOSTHEAT.20 chauffe votre habitation,Die BOOSTHEAT.20 heizt Ihr Haus
+help_heater_off,Your home is already at the right temperature,Votre habitation est déjà à la bonne température,Die Komforttemperatur für Ihr Haus wurde schon erreicht
+help_thermostat_connected,You thermostat is connected,Votre thermostat est connecté,Ihr Thermostat ist verbunden
+help_thermostat_request,and it is requesting heating.,et il demande du chauffage,und er fordert nach Heizung an
+help_return_supply_temp,Return and supply temperature of the heating water circulating in your home.,Température de départ et de retour de l'eau de chauffage circulant dans votre habitation.,Vorlauf- und Rücklauftemperatur des in Ihrem Haus zirkulierenden Heizwassers.
+help_gaz_power,In no case is this estimated gas power used to calculate an energy performance.,"En aucun cas, cette puissance gaz estimée est utilisée pour calculer une performance énergétique.",In keinem Fall wird diese geschätzte Gasleistung zur Berechnung einer Energieleistung verwendet.
+outlet_evaporator_temp,Outlet Evaporator T°,T° sortie évaporateur,Ausgangstemperatur-Verdampfer
+commissioning,Commissioning,Mise en service,Inbetriebnahme
+connectivity,Connectivity,Connectivité,Konnektivität
+identifier,Identifier,Identifiant,Kennung
+expected_value,Expected value,Valeur attendue,Erwarteter Wert
+Informations,Informations,Informations,Informations
+Licenses,Licenses,Licences,Lizenz
+License_note,Contact us at serviceclient@boostheat.com to get the source code corresponding to the BOOSTHEAT use of free or open source librairies.,Veuillez contacter serviceclient@boostheat.com             pour demander le code source correspondant à             l'utilisation par BOOSTHEAT de librairies gratuites ou open source.,"Bitte kontaktieren Sie uns unter serviceclient@boostheat.com, um den Quellcode zu erhalten, der der Nutzung von kostenlosen oder Open-Source-Bibliotheken durch BOOSTHEAT entspricht."
+forcing,Forcing,Forçage,Auslösung
+C001,Unstable condensing boiler fan at start,Ventilateur de la chaudière à condensation instable au démarrage,Lüfter der Brennwerttherme instabil beim Start
+C002,Abnormal speed of the condensing boiler fan,Vitesse anormale du ventilateur de la chaudière à condensation,Ungewöhnliche Geschwindigkeit des Lüfters der Brennwerttherme
+C003,Condensing boiler burner ignition failure,Défaut de flamme du brûleur de la chaudière à condensation,Defekt an der Brennerflamme der Brennwerttherme
+C005,Overheat of condensing boiler flue temperature,Température de fumée de la chaudière à condensation trop haute,Abgastemperatur der Brennwerttherme zu hoch
+C006,Overheat of condensing boiler burner temperature,Température de brûleur de la chaudière à condensation trop haute,Brennertemperatur der Brennwerttherme zu hoch
+C007,DHW pump blockage,Blocage du circulateur ECS,WW-Zirkulationspumpe blockiert
+C008,DHW pump undervoltage failure,Défaut d'alimentation du circulateur ECS,Fehlerhafte Stromversorgung bei der WW-Zirkulationspumpe
+C009,Flue duct blockage,Bouchage fumée,Abgasrohr verstopf
+C010,Heat pump burner 1 ignition failure,Défaut de flamme du brûleur 1 de la pompe à chaleur,Flammenausfall Wärmepumpe Brenner 1
+C012,Heat pump burner 1 rising temperature consistency failure,Défaut de cohérence de montée en température du thermocouple 1 de la pompe à chaleur ,Konsistenzfehler des Temperaturanstiegs Wärmepumpe Thermoelement 1
+C013,Heat pump burner 2 ignition failure,Défaut de flamme du brûleur 2 de la pompe à chaleur,Flammenausfall Wärmepumpe Brenner 2
+C015,Heat pump burner 2 rising temperature consistency failure,Défaut de cohérence de montée en température du thermocouple 2 de la pompe à chaleur ,Konsistenzfehler des Temperaturanstiegs Wärmepumpe Thermoelement 2
+C016,Heat pump burners stopped temperature consistency failure,Défaut de cohérence des thermocouples à l'arrêt,Konsistenzfehler an den Thermoelementen bei Stillstand
+C017,Heat pump fan speed failure,Défaut de vitesse du ventilateur de la pompe à chaleur,Geschwindigkeitsfehler Wärmepumpe Lüfter
+C018,Overheat of heat pump heater 1 temperature,Température du brûleur 1 de la pompe à chaleur trop haute,Temperatur Wärmepumpe Brenner 1 zu hoch
+C019,Overheat of heat pump heater 2 temperature,Température du brûleur 2 de la pompe à chaleur trop haute,Temperatur Wärmepumpe Brenner 2 zu hoch
+C020,Overheat of heat pump flue temperature,Température des fumées de la pompe à chaleur trop haute,Wärmepumpe Abgastemperatur zu hoch
+C022,Compressor 1 motor blockage,Blocage moteur compresseur 1,Motorstörung Kompressor 1
+C023,Compressor 2 motor blockage,Blocage moteur compresseur 2,Motorstörung Kompressor 2
+C024,Compressor 3 motor blockage,Blocage moteur compresseur 3,Motorstörung Kompressor 3
+C025,Outlet compressors pressure out of range,Défaut de pression du circuit C02 en sortie des compresseurs,Druckfehler CO2-Kreis am Kompressor Auslassventil
+C026,C02 circuit intermediary pressure out of range,Défaut de pression intermédiaire du circuit C02,Fehler Zwischendruck CO2-Kreis
+C027,Inlet compressors pressure out of range,Défaut de pression du circuit C02 en entrée des compresseurs,Druckfehler CO2-Kreis am Kompressor Einlassventil
+C028,Overheat of DHW temperature,Surchauffe du circuit ECS,TWW-Temperatur zu hoch
+C029,Overheat of the supply temperature,Température de départ chauffage trop haute,Vorlauftemperatur Heizung zu hoch
+C030,Inlet air blockage,Entrée d'air bouchée,Lufteinlass verstopft
+C032,Blockage heating circuit pump,Blocage du circulateur circuit chauffage,Heizkreis-Zirkulationspumpe blockiert
+C033,Heating circuit pump undervoltage failure,Défaut d'alimentation du circulateur circuit chauffage,Fehlerhafte Stromversorgung bei der Heizkreis-Zirkulationspumpe
+C034,CO2 circuit safety pressostat trigger,Déclenchement du pressostat de sécurité du circuit CO2,Auslösung CO2-Kreis Hochdrucksicherheitskontrolle
+C035,Condensate siphon blockage,Blocage siphon d'évacuation des condensats,Kondensat-Siphon verstopft
+C036,Condensing boiler flue temperature sensor error,Défaut du capteur de température des fumées de la chaudière à condensation,Fehler Abgastemperatursensor am Brennwertkessel
+C037,Condensing boiler heater temperature sensor error,Défaut du capteur de température du corps de chauffe de la chaudière à condensation,Fehler Temperaturfühler des Heizelements am Brennwertkessel
+C038,Boiler differential pressure sensor error,Défaut du capteur d'étanchéité,Fehler am Leckagesensor 
+C039,DHW tank bottom temperature sensor error,Défaut du capteur de température du bas du ballon ECS,Fehler Temperaturfühler Warmwasserspeicher unten
+C040,DHW tank heating temperature sensor error,Défaut du capteur de température de chauffe du ballon ECS,Fehler Temperaturfühler der Heizung am Warmwasserspeicher
+C041,DHW tank top temperature sensor error,Défaut du capteur de température du haut du ballon ECS,Fehler Temperaturfühler Warmwasserspeicher oben
+C042,Heat pump flue temperature sensor error,Défaut du capteur de température des fumées de la pompe à chaleur,Fehler am Abgastemperaturfühler der Wärmepumpe
+C043,Heat pump heater 1 temperature sensor error,Défaut du capteur de température du compresseur 1,Fehler Temperatursensor Kompressor stufe 1
+C044,Heat pump heater 2 temperature sensor error,Défaut du capteur de température du compresseur 2,Fehler Temperatursensor Kompressor stufe 2
+C045,Glycol inlet evaporator temperature sensor error,Défaut du capteur de température glycol d'entrée évaporateur,Fehler des Glykoltemperatursensors am Verdampfereinlass
+C046,Glycol outlet evaporator temperature sensor error,Défaut du capteur de température glycol de sortie évaporateur,Fehler des Glykoltemperatursensors am Verdampferausgang
+C047,Glycol pressure sensor error,Défaut du capteur de pression glycol,Fehler Glykol-Drucksensor
+C048,CO2 pressure sensor error,Défaut du capteur de pression CO2,Fehler CO2-Drucksensor
+C049,CO2 intermediary pressure sensor error,Défaut du capteur de pression intermédiaire CO2,Fehler CO2-Zwischendrucksensor
+C050,CO2 low pressure sensor error,Défaut du capteur de pression basse CO2,Fehler CO2-Niederdrucksensor
+C051,Gaz cooler outlet temperature sensor error,Défaut du capteur de température de sortie gaz cooler,Fehler des Sensors für die Ausgangstemperatur von Gaskühler
+C052,CO2 outlet evaporator temperature sensor error,Défaut du capteur de température CO2 de sortie évaporateur,Fehler des CO2-Temperatursensors am Verdampferausgang
+C053,Heat pump outlet temperature sensor error,Défaut du capteur de température de sortie de la pompe à chaleur,Fehler Ausgangstemperatursensor der Wärmepumpe
+C054,Heating circuit pressure sensor error,Défaut du capteur de pression du circuit chauffage,Fehler Drucksensor Heizkreis
+C055,Heat pump motor 1 speed sensor error,Défaut du capteur de vitesse du moteur 1 de la pompe à chaleur,Fehler im Drehzahlsensor von Motor 1 der Wärmepumpe
+C056,Heat pump motor 2 speed sensor error,Défaut du capteur de vitesse du moteur 2 de la pompe à chaleur,Fehler im Drehzahlsensor von Motor 2 der Wärmepumpe
+C057,Heat pump motor 3 speed sensor error,Défaut du capteur de vitesse du moteur 3 de la pompe à chaleur,Fehler im Drehzahlsensor von Motor 3 der Wärmepumpe
+C058,Outdoor temperature sensor error,Défaut du capteur de température extérieure,Fehler Außentemperatursensor
+C059,Heating return temperature sensor error,Défaut du capteur de température de retour chauffage,Fehler Heizungsrücklauftemperaturfühler
+C060,Siphon differential temperature sensor error,Défaut du capteur de pression différentielle du siphon,Fehler des Siphon-Differenzdrucksensors
+C061,Heating supply temperature sensor error,Défaut du capteur de température de départ chauffage,Fehler Heizungsvorlauftemperaturfühler
+C062,BSP must be updated on the second slot,Le BSP doit être mis à jour sur la seconde partition,BSP muss auf der zweiten Partition aktualisiert werden
+C063,Internal unit board communication error,Perte de communication carte unité intérieure,Kommunikationsverlust der Inneneinheitsplatine
+C064,External unit board communication error,Perte de communication carte unité extérieure,Kommunikationsverlust der Außeneinheitsplatine
+C065,Heat pump board communication error,Perte de communication carte pompe à chaleur,Kommunikationsverlust der Wärmepumpenplatine
+C067,Motor board communication error,Perte de communication carte moteur,Kommunikationsverlust der Motorplatine
+C066,Safety thermostat trigger,Déclenchement du thermostat de sécurité,Sicherheitsthermostat ausgelöst
+C069,External unit fan failure,Défaut du ventilateur de l'unité extérieure,External unit fan failure
+C070,Evohome communication error,Perte de communication Evohome,Evohome-Kommunikationsverlust
+C071,T87RF communication error,Perte de communication T87RF,T87RF-Kommunikationsverlust
+C072,BRDG_02R13 communication error,Perte de communication BRDG_02R13,BRDG_02R13-Kommunikationsverlust
+C073,VMU-MC communication error,Perte de communication VMU-MC,VMU-MC-Kommunikationsverlust
+C074,Optional safety alarm raised,Levée de l'alarme de sécurité optionnelle,Auslösen des optionalen Sicherheitsalarms
+C075,Blockage mpg circuit pump,Blocage du circulateur circuit glycol,Blockierung der Umwälzpumpe des Glykolkreislaufs 
+C076,Mpg circuit pump undervoltage failure,Défaut d'alimentation du circulateur circuit mpg,Fehlerhafte Stromversorgung bei der MPG-Umwälzspumpe
+C077,DHW supply temperature sensor error,Défaut de température de sortie ECS,Fehler Trinkwarmwasseraustrittstemperatur
+C078,Too low heating water flow,Défaut débit d'eau de chauffage trop faible,Störung Heizwasserdurchfluss zu gering 
+C079,Thermosat needs measure failure,Défaut mesure des besoins du thermostat,Fehler beim Messen der Thermostatanforderungen
+C080,1_FS5219 gas flowmeter communication error,Perte de communication débitmètre gaz 1_FS5219,Kommunikationsverlust der 1_FS5219 Gasdurchflussmesser
+C084,External unit defrosting failure,Dégivrage de l'unité extérieur impossible,Fehler beim Abtauen der externen Einheit
+C085,High pressure setpoint out of range,Défaut suivi de consigne haute pression,High pressure setpoint out of range
+C086,Gas low flow,Défaut débit gas trop faible,Gas low flow
+C087,DHW Pollustat communication error,Perte de communication Pollustat ECS,DHW Pollustat communication error
+C088,Heating Pollustat communication error,Perte de communication Pollustat chauffage,Heating Pollustat communication error
+C101,Heat pump fan 1 speed failure,Défaut de vitesse du ventilateur 1 de la pompe à chaleur,Heat pump fan 1 speed failure
+C102,Heat pump fan 2 speed failure,Défaut de vitesse du ventilateur 2 de la pompe à chaleur,Heat pump fan 2 speed failure
+C103,Heat pump burners stopped temperature consistency failure,Défaut de cohérence des thermocouples à l'arrêt,Heat pump burners stopped temperature consistency failure
+C104,Overheat of heat pump burner 1 heater temperature,Température du brûleur 1 de la pompe à chaleur trop haute,Overheat of heat pump burner 1 heater temperature
+C105,Overheat of heat pump burner 2 heater temperature,Température du brûleur 2 de la pompe à chaleur trop haute,Overheat of heat pump burner 2 heater temperature
+C106,Heat pump burner 1 heater temperature sensor error,Défaut du capteur de température du compresseur 1,Heat pump burner 1 heater temperature sensor error
+C107,Heat pump burner 2 heater temperature sensor error,Défaut du capteur de température du compresseur 2,Heat pump burner 2 heater temperature sensor error
+C108,Heat pump burner 1 ignition failure,Défaut de flamme du brûleur 1 de la pompe à chaleur,Heat pump burner 1 ignition failure
+C109,Heat pump burner 1 rising temperature consistency failure,Défaut de cohérence de montée en température du thermocouple 1 de la pompe à chaleur ,Heat pump burner 1 rising temperature consistency failure
+C110,Heat pump burner 2 ignition failure,Défaut de flamme du brûleur 2 de la pompe à chaleur,Heat pump burner 2 ignition failure
+C111,Heat pump burner 2 rising temperature consistency failure,Défaut de cohérence de montée en température du thermocouple 2 de la pompe à chaleur ,Heat pump burner 2 rising temperature consistency failure
+C112,2_FS5219 gas flowmeter communication error,Perte de communication débitmètre gaz 2_FS5219,Kommunikationsverlust der 2_FS5219 Gasdurchflussmesser

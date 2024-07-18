@@ -1,0 +1,221 @@
+name: $(Year:yyyy).$(Month).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Data/ImpliciX.Data/*
+      - Tools/ImpliciX.DesktopServices/*
+      - Tools/ImpliciX.Designer/*
+      - Tools/ImpliciX.DesktopSDesigner/*
+      - azure-pipelines-designer.yml
+
+resources:
+  pipelines:
+    - pipeline: ImpliciXLinker
+      project: ImpliciX
+      source: linker
+      branch: master
+      trigger: true
+
+    - pipeline: ImpliciXRuntime
+      project: ImpliciX
+      source: runtime
+      branch: master
+      trigger: true
+
+stages:
+
+  - stage: buildDesignerApp
+    jobs:
+      - job: build_linux
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        
+        steps:
+          - task: NuGetToolInstaller@1
+            inputs:
+              versionSpec: '5.8.1'
+
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              arguments: -c $(buildConfiguration)
+
+          - template: azure-pipelines-template-language-tag.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Tests
+            inputs:
+              command: test
+              projects: |
+                Data/ImpliciX.Data/**/tests/*.csproj
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.DesktopDesigner/**/tests/*.csproj
+              
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      - job: build_windows
+        pool:
+          vmImage: 'windows-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        
+        steps:
+          - task: NuGetToolInstaller@1
+            inputs:
+              versionSpec: '5.8.1'
+
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              arguments: -c $(buildConfiguration)
+
+          - template: azure-pipelines-template-language-tag.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Data Tests
+            inputs:
+              command: test
+              projects: |
+                Data/ImpliciX.Data/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeWindows --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Tests
+            inputs:
+              command: test
+              projects: |
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.DesktopDesigner/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+              
+  - stage: publishDesignerApp
+    jobs:
+      - job: publishDesignerApp
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        steps:
+          - task: NuGetToolInstaller@1
+            inputs:
+              versionSpec: '5.8.1'
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: CmdLine@2
+            inputs:
+              script: |
+                mkdir -p $(Build.ArtifactStagingDirectory)/Packages/NuGetPackages/
+                mkdir -p $(Build.ArtifactStagingDirectory)/NuGetPackages/
+            displayName: 'Create packages folders'
+
+          - task: NuGetCommand@2
+            inputs:
+              command: 'custom'
+              arguments: 'install ImpliciX.Runtime -OutputDirectory $(Build.ArtifactStagingDirectory)/NuGetPackages -Source https://pkgs.dev.azure.com/boostheat/_packaging/ImpliciX/nuget/v3/index.json -Source https://api.nuget.org/v3/index.json'
+            displayName: 'Download ImpliciX.Runtime .nupkg from private feed'
+
+          - task: NuGetCommand@2
+            inputs:
+              command: 'custom'
+              arguments: 'install ImpliciX.Language -OutputDirectory $(Build.ArtifactStagingDirectory)/NuGetPackages -Source https://pkgs.dev.azure.com/boostheat/_packaging/ImpliciX/nuget/v3/index.json -Source https://api.nuget.org/v3/index.json'
+            displayName: 'Download ImpliciX.Language .nupkg from private feed'
+
+          - task: NuGetCommand@2
+            inputs:
+              command: 'custom'
+              arguments: 'install ImpliciX.Linker -OutputDirectory $(Build.ArtifactStagingDirectory)/NuGetPackages -Source https://pkgs.dev.azure.com/boostheat/_packaging/ImpliciX/nuget/v3/index.json -Source https://api.nuget.org/v3/index.json'
+            displayName: 'Download ImpliciX.Linker .nupkg from private feed'
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish ImpliciX designer for linux-x64
+            inputs:
+              command: 'publish'
+              publishWebProjects: false
+              projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.DesktopDesigner/src/ImpliciX.DesktopDesigner.csproj'
+              arguments: '--configuration $(BuildConfiguration) --framework net8.0 --runtime linux-x64 --self-contained --output $(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Linux /p:PublishReadyToRun=true /p:FileVersion=$(Build.BuildNumber) /p:AssemblyVersion=$(Build.BuildNumber)'
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish ImpliciX designer for win-x64
+            inputs:
+              command: publish
+              publishWebProjects: False
+              projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.DesktopDesigner/src/ImpliciX.DesktopDesigner.csproj'
+              arguments: '--configuration $(BuildConfiguration) --framework net8.0 --runtime win-x64 --self-contained --output $(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Windows /p:PublishReadyToRun=false /p:FileVersion=$(Build.BuildNumber) /p:AssemblyVersion=$(Build.BuildNumber)'
+
+          - task: CmdLine@2
+            inputs:
+              script: |
+                find $(Build.ArtifactStagingDirectory)/NuGetPackages/ -iname 'ImpliciX.*.nupkg' -print0 | xargs -0 -I{} nuget add "{}" -expand -source $(Build.ArtifactStagingDirectory)/Packages/NuGetPackages/                
+                cd $(Build.ArtifactStagingDirectory)/Packages/
+                zip -r $(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Linux/src.zip NuGetPackages/
+                zip -r $(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Windows/src.zip NuGetPackages/
+            displayName: 'Copy runtime package to ImpliciX.Designer.* artifact directory'
+
+          - publish: '$(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Linux'
+            displayName: Publish ImpliciX designer for linux-x64 artifacts
+            artifact: 'implicix_designer_linux'
+
+          - publish: '$(Build.ArtifactStagingDirectory)/ImpliciX.Designer.Windows'
+            displayName: Publish ImpliciX designer for win-x64 artifacts
+            artifact: 'Implicix_designer_windows'    

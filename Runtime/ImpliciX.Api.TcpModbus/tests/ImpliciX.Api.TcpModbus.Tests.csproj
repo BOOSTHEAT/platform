@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>ImpliciX.Api.TCPModbus.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+      <PackageReference Include="Moq" Version="4.20.70" />
+      <PackageReference Include="NFluent" Version="2.8.0" />
+      <PackageReference Include="NModbus" Version="3.0.81" />
+      <PackageReference Include="NUnit" Version="3.13.2" />
+      <PackageReference Include="NUnit3TestAdapter" Version="4.4.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+    <Import Project="..\..\..\Language.targets" />
+    <ItemGroup>
+      <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+      <ProjectReference Include="..\..\ImpliciX.TestsCommon\src\ImpliciX.TestsCommon.csproj" />
+      <ProjectReference Include="..\src\ImpliciX.Api.TcpModbus.csproj" />
+    </ItemGroup>
+
+</Project>

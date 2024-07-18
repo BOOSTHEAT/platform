@@ -1,0 +1,90 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Tools/*Linker/*
+      - Tools/*Qml/*
+      - azure-pipelines-tools-linker.yml
+
+resources:
+  pipelines:
+    - pipeline: ImpliciXTestHelpers
+      project: ImpliciX
+      source: applications_test_helpers
+      branch: master
+      trigger: true
+
+stages:
+- stage: regularBuild
+  jobs:
+  - job: regularBuild
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    variables:
+      buildConfiguration: 'Release'
+      
+    steps:
+    - template: azure-pipelines-template-dotnet-setup.yml
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: Tools/*Linker/**/*.csproj
+        feedsToUse: 'config'
+        nugetConfigPath : "./NuGet.Config"
+  
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: |
+          Tools/*Linker/**/*.csproj
+          Tools/*ToQml/**/*.csproj
+        arguments: -c $(buildConfiguration) /p:AssemblyVersion=$(Build.BuildNumber)
+
+    - template: azure-pipelines-template-language-tag.yml
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: test
+        projects: |
+          Tools/*Linker/**/tests/*.csproj
+          Tools/*ToQml/**/tests/*.csproj
+        arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      displayName: Run Tests
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: publish
+        publishWebProjects: False
+        projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.Linker/src/ImpliciX.Linker.csproj'
+        arguments: '--configuration $(BuildConfiguration) --framework net8.0 --runtime linux-x64 --self-contained --output $(Build.ArtifactStagingDirectory)/ImpliciX.Linker /p:PublishReadyToRun=true /p:AssemblyVersion=$(Build.BuildNumber)'
+        zipAfterPublish: False
+      displayName: Publish device linker linux-x64
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: 'device_linker'
+      displayName: Publish artifacts
+
+    - task: NuGetCommand@2
+      inputs:
+        command: pack
+        packagesToPack: '$(Build.SourcesDirectory)/Tools/ImpliciX.Linker/src/linker.nuspec'
+        versioningScheme: byBuildNumber
+        packDestination: '$(Build.ArtifactStagingDirectory)'
+      displayName: Create nupkg
+
+    - task: NuGetCommand@2
+      inputs:
+        command: push
+        feedsToUse: select
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+        nuGetFeedType: internal
+        publishVstsFeed: 'ImpliciX'
+      displayName: Publish to artifacts feed
+        

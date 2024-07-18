@@ -1,0 +1,49 @@
+name: $(Year:yyyy).$(Month).$(Rev:r)
+
+stages:
+
+- stage: buildDesignerApp
+  jobs:
+  - job: buildDesignerApp
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    variables:
+      buildConfiguration: 'Release'
+
+    steps:
+    - template: azure-pipelines-template-dotnet-setup.yml
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: "**/*.csproj"
+        feedsToUse: 'config'
+        nugetConfigPath : "./NuGet.Config"
+
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: "**/*.csproj"
+        arguments: -c $(buildConfiguration)
+
+    - task: UseDotNet@2
+      displayName: 'Install .net core 2.1'
+      inputs:
+        packageType: sdk
+        version: '2.1.818'
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+        
+    - bash: |
+        set -x
+        languageDLL=$(echo ~/.nuget/packages/boostheat.device.language/*/lib/netstandard2.1/*.dll)
+        dotnet new tool-manifest
+        dotnet tool install --local aver
+        languageVersion=$(dotnet tool run aver -- -A -a $languageDLL | grep FileVersion | cut -c 18-)
+        echo "Language=$languageVersion"
+        az pipelines build tag add --build-id ${BUILD_BUILDID} --tags "Language=$languageVersion"
+      displayName: custom script
+      env:
+        AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)

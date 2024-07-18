@@ -1,0 +1,113 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ImpliciX.Designer.ViewModels"
+             xmlns:designViewModels="clr-namespace:ImpliciX.Designer.DesignViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ImpliciX.Designer.Views.WelcomeView">
+  <Design.DataContext>
+    <designViewModels:WelcomeViewDesignModel />
+  </Design.DataContext>
+  <StackPanel>
+    <StackPanel.Styles>
+      <Style Selector="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Style Selector="^ Run" />
+        <Style Selector="^ InlineUIContainer">
+          <Style Selector="^ Button.link">
+            <Setter Property="Margin" Value="2 0 0 5" />
+          </Style>
+        </Style>
+      </Style>
+      <Style Selector="ListBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Style Selector="^ ListBoxItem">
+          <Setter Property="Margin" Value="0 1 0 1" />
+        </Style>
+      </Style>
+
+    </StackPanel.Styles>
+    <TextBlock ClipToBounds="False" TextWrapping="Wrap">
+      Pick up where you left off:
+    </TextBlock>
+    <ListBox ItemsSource="{Binding DeviceDefinitionPaths}" HorizontalAlignment="Left"
+             SelectionChanged="SelectingItemsControl_OnSelectionChanged">
+      <ListBox.DataTemplates>
+        <DataTemplate DataType="vm:SessionCommands">
+          <StackPanel Orientation="Horizontal"
+                      Classes.path="{Binding ContainPath}"
+                      Classes.nuget="{Binding IsNuget}"
+                      Classes.csproj="{Binding IsCsproj}"
+                      Classes.connect="{Binding ContainConnection}"
+                      HorizontalAlignment="Stretch">
+            <Button Classes="link"
+                    Command="{Binding Command,Mode=OneWay}"
+                    Margin="2 0 0 0"
+                    VerticalAlignment="Center">
+              <WrapPanel Width="20">
+                <Path Name="NugetIcon"
+                      Width="16"
+                      Margin="2,1,2,1"
+                      Fill="SteelBlue"
+                      Data="M19.52 5.65H12.84A6.91 6.91 0 005.9 12.57v6.68a6.91 6.91 0 006.91 6.91h6.68a6.91 6.91 0 006.91-6.92V12.57A6.91 6.91 0 0019.52 5.65Zm-6.75 7.47A2 2 0 1113 10.6 2 2 0 0112.77 13.12Zm6.63 9.69a3.5 3.5 0 113.5-3.5A3.5 3.5 0 0119.4 22.81ZM3.65 4.06a3.5 3.5 0 113.5-3.5 3.5 3.5 0 01-3.5 3.5Z"
+                      StrokeJoin="Round"
+                      StrokeThickness="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Stretch="Uniform"
+                      IsVisible="{Binding IsNuget}" />
+                <Path Name="CsprojIcon"
+                      Width="16"
+                      Margin="2,1,2,1"
+                      Data="M6 14v36l26 10 24-10v-36l-24-10zm-1-1V51l27 10 25-10v-38l-25-10ZM34 26a1 1 0 00-20 12c5 7 16 7 20 0M39 26H51M51 35H39M41 39 44 22M50 22 47 39"
+                      Stroke="DarkViolet"
+                      StrokeThickness="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Stretch="Uniform"
+                      IsVisible="{Binding IsCsproj}" />
+              </WrapPanel>
+            </Button>
+            <Button Classes="link"
+                    Command="{Binding Command,Mode=OneWay}"
+                    Margin="2 0 0 0"
+                    VerticalAlignment="Center">
+              <WrapPanel Width="20">
+                <Path Name="ConnectionIcon"
+                      Width="16"
+                      Margin="2,1,2,1"
+                      Data="M1.5 6c.3 0 .5.2.5.5 0 .3-.3.5-.5.5-.2 0-.5-.2-.5-.5 0-.3.2-.5.5-.5M2.2 5.8l1.3-1.5h-1L5.8 2.2l-1.3 1.5h1zM6.5 1c.3 0 .5.2.5.5 0 .3-.3.5-.5.5-.2 0-.5-.2-.5-.5 0-.3.2-.5.5-.5"
+                      Fill="Goldenrod"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Stretch="Uniform"
+                      IsVisible="{Binding ContainConnection}" />
+              </WrapPanel>
+            </Button>
+            <Button Classes="link"
+                    Content="{Binding Text, Mode=OneWay}"
+                    Command="{Binding Command,Mode=OneWay}"
+                    Margin="2 0 0 0"
+                    Padding="0 4 0 4"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Cursor="Hand" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.DataTemplates>
+    </ListBox>
+    <TextBlock ClipToBounds="False" TextWrapping="Wrap">
+      Or
+      <InlineUIContainer>
+        <Button Classes="link"
+                Content="open a device definition"
+                Command="{Binding Window.SelectAndLoadDeviceDefinition}" />
+      </InlineUIContainer>
+    </TextBlock>
+  </StackPanel>
+
+</UserControl>

@@ -1,0 +1,37 @@
+<UserControl x:Class="ImpliciX.Designer.Views.SubSystemView" 
+  xmlns="https://github.com/avaloniaui" 
+  xmlns:agc="clr-namespace:AvaloniaGraphControl;assembly=AvaloniaGraphControl" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:views="using:ImpliciX.Designer.Views"
+  mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400">
+
+  <DockPanel LastChildFill="True" Classes="screen pdf" >
+    <StackPanel Classes="screen pdf" DockPanel.Dock="Top">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0" Classes="screen" Spacing="5">
+        <CheckBox IsChecked="{Binding ShowTransitions}" Classes="screen">Show transitions</CheckBox>
+        <Slider Name="zoomer" Orientation="Horizontal" Width="100" Value="{Binding Zoom}" Minimum="0.1" Maximum="2" Classes="screen"/>
+        <Button Command="{Binding SetAutoZoom}" Classes="screen">Fit</Button>
+      </StackPanel>
+      <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" Classes="pdf" />
+    </StackPanel>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Classes="screen pdf" Bounds="{Binding VisibleBounds, Mode=OneWayToSource}">
+      <LayoutTransformControl>
+        <LayoutTransformControl.LayoutTransform>
+          <ScaleTransform ScaleX="{Binding Zoom}" ScaleY="{Binding Zoom}"/>
+        </LayoutTransformControl.LayoutTransform>
+        <DockPanel>
+          <views:DefinitionView DataContext="{Binding Always}" HorizontalAlignment="Left" Classes="screen pdf" DockPanel.Dock="Top" Margin="5,0,0,0"/>
+          <agc:GraphPanel HorizontalAlignment="Left" VerticalAlignment="Top" Graph="{Binding MyGraph}" Bounds="{Binding IdealBounds, Mode=OneWayToSource}" DockPanel.Dock="Top">
+            <agc:GraphPanel.DataTemplates>
+              <DataTemplate DataType="{x:Type agc:Edge}">
+                <agc:Connection Brush="{StaticResource ThemeForegroundBrush}" />
+              </DataTemplate>
+            </agc:GraphPanel.DataTemplates>
+          </agc:GraphPanel>
+        </DockPanel>
+      </LayoutTransformControl>
+    </ScrollViewer>
+  </DockPanel>
+</UserControl>

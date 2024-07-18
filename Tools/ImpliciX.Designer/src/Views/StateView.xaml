@@ -1,0 +1,30 @@
+<UserControl x:Class="ImpliciX.Designer.Views.StateView" 
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:views="using:ImpliciX.Designer.Views"
+  mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="200">
+  <UserControl.Styles>
+    <Style Selector="Border.standard">
+      <Setter Property="Background" Value="{StaticResource ThemeBackgroundBrush}" />
+    </Style>
+    <Style Selector="Border.current">
+      <Setter Property="Background" Value="{StaticResource ThemeControlHighlightMidBrush}" />
+    </Style>
+  </UserControl.Styles>
+  <Border BorderThickness="1"
+          BorderBrush="{StaticResource ThemeBorderHighBrush}"
+          Classes.standard="{Binding !IsActive}"
+          Classes.current="{Binding IsActive}">
+    <StackPanel>
+      <WrapPanel HorizontalAlignment="Center" Margin="5,10,5,5">
+        <TextBlock Text="{Binding Name}"/>
+        <TextBlock Text=" ("/>
+        <TextBlock Text="{Binding Index}"/>
+        <TextBlock Text=")"/>
+      </WrapPanel>
+      <views:DefinitionView DataContext="{Binding Definition}" Margin="5,5,5,0" />
+    </StackPanel>
+  </Border>
+</UserControl>

@@ -1,0 +1,34 @@
+{
+  "Setups": {
+    "pim": {
+      "Scheduler": "SingleThreaded",
+      "Time": "Real",
+      "Modules": [
+        "foo"
+      ]
+    },
+    "pam": {
+      "Scheduler": "MultiThreaded",
+      "Time": "Virtual",
+      "Modules": [
+        "bar"
+      ]
+    },
+    "poum": {
+      "Scheduler": "MultiThreaded",
+      "Time": "Real",
+      "Modules": [
+        "foo",
+        "bar"
+      ]
+    }
+  },
+  "Modules": {
+    "foo": {
+      "Factory": "TheFooFactory"
+    },
+    "bar": {
+      "Factory": "TheBarFactory"
+    }
+  }
+}

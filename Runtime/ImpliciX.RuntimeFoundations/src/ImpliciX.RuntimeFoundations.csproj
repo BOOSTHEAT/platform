@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>ImpliciX.RuntimeFoundations</AssemblyName>
+    <RootNamespace>ImpliciX.RuntimeFoundations</RootNamespace>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
+  <Import Project="..\..\..\Language.targets" />
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Data\ImpliciX.Data\src\ImpliciX.Data.csproj" />
+    <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

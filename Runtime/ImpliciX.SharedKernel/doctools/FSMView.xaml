@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:agc="clr-namespace:AvaloniaGraphControl;assembly=AvaloniaGraphControl"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ImpliciX.SharedKernel.DocTools"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+             x:Class="ImpliciX.SharedKernel.DocTools.FSMView">
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Top">
+            <ComboBox Name="fsms" ItemsSource="{Binding FSMs}" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ZoomBorder x:Name="ZoomBorder" Stretch="Uniform" ZoomSpeed="1.2"
+                        ClipToBounds="True" Focusable="True" Background="White"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <agc:GraphPanel
+                    HorizontalAlignment="Left"
+                    Graph="{Binding SelectedItem.MyGraph, ElementName=fsms}"
+                    LayoutMethod="SugiyamaScheme">
+                    <agc:GraphPanel.DataTemplates>
+                        <DataTemplate DataType="{x:Type local:CompositeStateViewModel}">
+                            <agc:TextSticker Text="{Binding Name}"
+                                             Shape="RoundedRectangle"
+                                             Padding="5,5"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:LeafStateViewModel}">
+                            <agc:TextSticker Text="{Binding Name}"
+                                             Shape="RoundedRectangle" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:EntryPointViewModel}">
+                            <Ellipse Width="10" Height="10" Fill="Black" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type local:TransitionViewModel}">
+                            <TextBlock Text="{Binding Text}" FontSize="8" />
+                        </DataTemplate>
+                    </agc:GraphPanel.DataTemplates>
+                </agc:GraphPanel>
+            </ZoomBorder>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

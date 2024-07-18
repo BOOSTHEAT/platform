@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:docTools="clr-namespace:ImpliciX.SharedKernel.DocTools;assembly=ImpliciX.SharedKernel.DocTools"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Width="1200" Height="700"
+    x:Class="ImpliciX.RTUModbus.Controllers.Doc.MainWindow"
+    Title="BOOSTHEAT.Boiler.RTUModbus.Controllers.Doc">
+    <docTools:FSMView />
+</Window>

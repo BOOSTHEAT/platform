@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+    <RootNamespace>ImpliciX.DesktopApp</RootNamespace>
+    <IsMonitor>False</IsMonitor>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsMonitor)'=='True'">
+    <DefineConstants>$(DefineConstants);MONITOR</DefineConstants>
+    <AssemblyName>ImpliciX.DesktopMonitor</AssemblyName>
+  </PropertyGroup>
+
+  <Import Project="..\..\..\Language.targets"/>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImpliciX.Designer\src\ImpliciX.Designer.csproj"/>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+<UserControl x:Class="ImpliciX.Designer.Views.LiveTextPropertyView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ix="using:ImpliciX.Designer.ViewModels"
+             x:DataType="ix:LiveTextPropertyViewModel"
+             xmlns:designViewModels="using:ImpliciX.Designer.DesignViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignWidth="300"
+             d:DesignHeight="500">
+  <Design.DataContext>
+    <designViewModels:LiveTextPropertyDataContext />
+  </Design.DataContext>
+  <Border IsVisible="{Binding IsEditable}">
+    <TextBox
+      Text="{Binding NewValue}" />
+  </Border>
+</UserControl>

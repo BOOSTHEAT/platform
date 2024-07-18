@@ -1,0 +1,17 @@
+Module Runtime
+
+ClientRuntime 1.0 ClientRuntime.qml
+StandaloneRuntime 1.0 StandaloneRuntime.qml
+DeviceApi 1.0 DeviceApi.qml
+RuntimeEvents 1.0 RuntimeEvents.qml
+Router 1.0 Router.qml
+Cache 1.0 Cache.qml
+SwipeScreen 1.0 SwipeScreen.qml
+SwipeItem 1.0 SwipeItem.qml
+HorizontalSwipeScreen 1.0 HorizontalSwipeScreen.qml
+VerticalSwipeScreen 1.0 VerticalSwipeScreen.qml
+ScreenSaver 1.0 ScreenSaver.qml
+WaitConnectionScreen 1.0 WaitConnectionScreen.qml
+ModelProperty 1.0 Data/ModelProperty.qml
+Measure 1.0 Data/Measure.qml
+TimeSeries 1.0 Data/TimeSeries.qml

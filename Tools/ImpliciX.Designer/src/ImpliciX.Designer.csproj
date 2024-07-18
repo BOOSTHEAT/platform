@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+    <RootNamespace>ImpliciX.Designer</RootNamespace>
+    <IsMonitor>False</IsMonitor>
+    <!-- 
+      <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+      <OutputType>WinExe</OutputType>
+    -->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsMonitor)'=='True'">
+    <DefineConstants>$(DefineConstants);MONITOR</DefineConstants>
+    <AssemblyName>ImpliciX.Monitor</AssemblyName>
+  </PropertyGroup>
+
+  <Import Project="..\..\..\Language.targets"/>
+
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\**"/>
+    <EmbeddedResource Include="ViewModels\Tools\xmlToCs.xslt"/>
+    <None Include="ViewModels\Tools\Grafana\grafana-datasources.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <TrimmerRootAssembly Include="System.ComponentModel.EventBasedAsync"/>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>ImpliciX.Designer.Tests</_Parameter1>
+    </AssemblyAttribute>
+    <Compile Update="Dialogs\PasswordView.axaml.cs">
+      <DependentUpon>PasswordView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Themes.Simple" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)"/>
+    <PackageReference Include="MessageBox.Avalonia" Version="$(MessageBoxAvaloniaVersion)"/>
+    <PackageReference Include="Dock.Avalonia" Version="$(DockAvaloniaVersion)"/>
+    <PackageReference Include="Dock.Model.ReactiveUI" Version="$(DockAvaloniaVersion)"/>
+    <PackageReference Include="AvaloniaGraphControl" Version="$(AvaloniaGraphControlVersion)"/>
+    <PackageReference Include="AvaloniaUI.PrintToPDF" Version="$(AvaloniaPrintToPDFVersion)"/>
+    <PackageReference Include="CsvHelper" Version="15.0.5"/>
+    <PackageReference Include="DynamicData" Version="7.14.2"/>
+    <PackageReference Include="InfluxDB.Client" Version="1.12.0"/>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta2.21617"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImpliciX.DesktopServices\src\ImpliciX.DesktopServices.csproj"/>
+  </ItemGroup>
+</Project>

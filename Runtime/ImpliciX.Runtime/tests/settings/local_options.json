@@ -1,0 +1,23 @@
+{
+  "Setups": {
+    "single_setup": {
+      "Scheduler": "MultiThreaded",
+      "Time": "Real",
+      "Modules": [
+        "foo",
+        "bar"
+      ],
+      "Options": {
+        "LOCAL_STORAGE":"/tmp"
+      }
+    }
+  },
+  "Modules": {
+    "foo": {
+      "Factory": "TheFooFactory"
+    },
+    "bar": {
+      "Factory": "TheBarFactory"
+    }
+  }
+}

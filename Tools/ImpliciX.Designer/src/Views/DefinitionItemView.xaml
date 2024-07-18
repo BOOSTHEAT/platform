@@ -1,0 +1,14 @@
+<UserControl x:Class="ImpliciX.Designer.Views.DefinitionItemView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignWidth="300"
+             d:DesignHeight="200">
+  <WrapPanel IsVisible="{Binding IsVisible}">
+    <TextBlock IsVisible="{Binding !IsActive}" Text="{Binding Symbol}" FontFamily="/Assets/Symbola.ttf#Symbola"
+               VerticalAlignment="Stretch" />
+    <Button IsVisible="{Binding IsActive}" Content="{Binding Symbol}" FontFamily="/Assets/Symbola.ttf#Symbola"
+            VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Command="{Binding ManualActivation}" />
+    <TextBlock Text="{Binding Description}" Margin="5,0,0,0" VerticalAlignment="Center" />
+  </WrapPanel>
+</UserControl>

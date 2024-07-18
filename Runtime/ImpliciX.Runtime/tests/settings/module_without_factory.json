@@ -1,0 +1,19 @@
+{
+  "Setups": {
+    "single_setup": {
+      "Scheduler": "MultiThreaded",
+      "Time": "Real",
+      "Modules": [
+        "foo",
+        "bar"
+      ]
+    }
+  },
+  "Modules": {
+    "foo": {
+      "Factory": "TheFooFactory"
+    },
+    "bar": {
+    }
+  }
+}

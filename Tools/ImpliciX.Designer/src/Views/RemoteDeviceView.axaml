@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="ImpliciX.Designer.Views.RemoteDeviceView">
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style Selector="WrapPanel > TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="WrapPanel > ComboBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="WrapPanel > Button">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <StackPanel Margin="5">
+        <WrapPanel>
+            <TextBlock Text="Remote Device" />
+        </WrapPanel>
+        <Border>
+            <StackPanel Margin="5">
+                <WrapPanel>
+                    <TextBlock Text="Board" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Name:" />
+                    <TextBlock Text="{Binding BoardName}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Operating System:" />
+                    <TextBlock Text="{Binding OperatingSystem}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Architecture:" />
+                    <TextBlock Text="{Binding Architecture}" />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+        <Border>
+            <StackPanel Margin="5">
+                <WrapPanel>
+                    <TextBlock Text="Application" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Name:" />
+                    <TextBlock Text="{Binding Name}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Version:" />
+                    <TextBlock Text="{Binding Version}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Setup:" />
+                    <TextBlock Text="{Binding Setup}" />
+                </WrapPanel>
+                <WrapPanel IsVisible="{Binding CanChangeSetup}">
+                    <TextBlock Text="Change to" />
+                    <ComboBox SelectedItem="{Binding NextSetup}" ItemsSource="{Binding Setups}" />
+                    <Button IsEnabled="{Binding CanChangeSetupForever}" Command="{Binding ChangeSetupForever}">permanently</Button>
+                    <TextBlock Text="or" Padding="1" />
+                    <Button IsEnabled="{Binding CanChangeSetupUntilNextReboot}" Command="{Binding ChangeSetupUntilNextReboot}">until next reboot</Button>
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

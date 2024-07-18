@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Moq" Version="4.18.4" />
+        <PackageReference Include="NFluent" Version="2.8.0" />
+        <PackageReference Include="nunit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    </ItemGroup>
+    <Import Project="..\..\..\Language.targets" />
+    <ItemGroup>
+      <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+      <ProjectReference Include="..\src\ImpliciX.MmiHost.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="package_examples\BOOSTHEAT.Boiler.GUI">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="package_examples\boiler_app.zip">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

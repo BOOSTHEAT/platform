@@ -1,0 +1,126 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Data/*
+      - azure-pipelines-data.yml
+
+resources:
+  pipelines:
+    - pipeline: ImpliciXLanguage
+      project: ImpliciX
+      source: language
+      branch: master
+      trigger: true
+
+stages:
+- stage: regularBuild
+  jobs:
+  - job: regularBuild_linux
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    variables:
+      buildConfiguration: 'Release'
+
+    steps:
+    - template: azure-pipelines-template-dotnet-setup.yml
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: "Data/**/*.csproj"
+        feedsToUse: 'config'
+        nugetConfigPath : "./NuGet.Config"
+  
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: "Data/**/*.csproj"
+        arguments: -c $(buildConfiguration)
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: test
+        projects: "Data/**/tests/*.csproj"
+        arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      displayName: Run Tests
+
+  - job: regularBuild_windows
+    pool:
+      vmImage: 'windows-latest'
+    
+    variables:
+      buildConfiguration: 'Release'
+
+    steps:
+      - template: azure-pipelines-template-dotnet-setup.yml
+
+      - task: DotNetCoreCLI@2
+        displayName: Restore
+        inputs:
+          command: restore
+          projects: "Data/**/*.csproj"
+          feedsToUse: 'config'
+          nugetConfigPath : "./NuGet.Config"
+
+      - task: DotNetCoreCLI@2
+        displayName: Build
+        inputs:
+          command: build
+          projects: "Data/**/*.csproj"
+          arguments: -c $(buildConfiguration)
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: test
+          projects: "Data/**/tests/*.csproj"
+          arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeWindows --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+        displayName: Run Tests
+- stage: createNuget
+  jobs:
+    - job: createNuget_linux
+      pool:
+        vmImage: 'ubuntu-latest'
+
+      variables:
+        buildConfiguration: 'Release'
+
+      steps:
+        - template: azure-pipelines-template-dotnet-setup.yml
+
+        - task: DotNetCoreCLI@2
+          displayName: Restore
+          inputs:
+            command: restore
+            projects: "Data/**/*.csproj"
+            feedsToUse: 'config'
+            nugetConfigPath: "./NuGet.Config"
+
+        - task: DotNetCoreCLI@2
+          displayName: Build
+          inputs:
+            command: build
+            projects: "Data/**/*.csproj"
+            arguments: -c $(buildConfiguration)
+
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: custom
+            custom: pack
+            arguments: Data/ImpliciX.Data/src/ImpliciX.Data.csproj -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) -p:PackageVersion=$(Build.BuildNumber)
+          displayName: Create nupkg
+
+        - task: NuGetCommand@2
+          inputs:
+            command: push
+            feedsToUse: select
+            packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+            nuGetFeedType: internal
+            publishVstsFeed: 'ImpliciX'
+          displayName: Publish to artifacts feed

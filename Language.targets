@@ -1,0 +1,5 @@
+<Project>
+    <ItemGroup>
+        <PackageReference Include="ImpliciX.Language" Version="*"/>
+    </ItemGroup>
+</Project>

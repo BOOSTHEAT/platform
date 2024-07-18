@@ -1,0 +1,27 @@
+<UserControl x:Class="ImpliciX.Designer.Views.CommandsView" 
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="300">
+
+  <Grid>
+      <Grid.RowDefinitions>
+          <RowDefinition Height="30" />
+          <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="10*" />
+          <ColumnDefinition Width="*" MinWidth="130" />
+      </Grid.ColumnDefinitions>
+      <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding Path=CommandBox}" />
+      <Button Grid.Column="1" Grid.Row="0" Command="{Binding Path=OnSendingCommand}"
+              IsEnabled="{Binding Path=SendButtonVisible}">
+          Send Command
+      </Button>
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+          <TextBox IsReadOnly="True" Text="{Binding Path=CommandHistory}" />
+      </ScrollViewer>
+  </Grid>
+
+</UserControl>

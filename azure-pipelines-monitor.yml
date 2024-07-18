@@ -1,0 +1,232 @@
+name: $(Year:yyyy).$(Month).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Data/ImpliciX.Data/*
+      - Tools/ImpliciX.DesktopServices/*
+      - Tools/ImpliciX.Designer/*
+      - Tools/ImpliciX.DesktopSDesigner/*
+      - Tools/ImpliciX.Monitor/*
+      - azure-pipelines-monitor.yml
+
+stages:
+
+  - stage: buildMonitorApp
+    jobs:
+      - job: build_linux
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        
+        steps:
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              arguments: -c $(buildConfiguration) /p:IsMonitor=True
+
+          - template: azure-pipelines-template-language-tag.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Tests
+            inputs:
+              command: test
+              projects: |
+                Data/ImpliciX.Data/**/tests/*.csproj
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.DesktopDesigner/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
+      - job: build_windows
+        pool:
+          vmImage: 'windows-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        
+        steps:
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.DesktopDesigner/**/*.csproj
+              arguments: -c $(buildConfiguration) /p:IsMonitor=True
+
+          - template: azure-pipelines-template-language-tag.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Data Tests
+            inputs:
+              command: test
+              projects: |
+                Data/ImpliciX.Data/**/tests/*.csproj
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.DesktopDesigner/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeWindows --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Tests
+            inputs:
+              command: test
+              projects: |
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.DesktopDesigner/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
+      - job: build_wasm
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        
+        steps:
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Workload
+            inputs:
+              command: custom
+              custom: workload
+              arguments: 'install wasm-tools'
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: restore
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.Monitor/**/*.csproj
+              feedsToUse: 'config'
+              nugetConfigPath: "./NuGet.Config"
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: |
+                Data/ImpliciX.Data/**/*.csproj
+                Tools/ImpliciX.DesktopServices/**/*.csproj
+                Tools/ImpliciX.Designer/**/*.csproj
+                Tools/ImpliciX.Monitor/**/*.csproj
+              arguments: -c $(buildConfiguration) /p:IsMonitor=True
+
+          - template: azure-pipelines-template-language-tag.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Run Tests
+            inputs:
+              command: test
+              projects: |
+                Data/ImpliciX.Data/**/tests/*.csproj
+                Tools/ImpliciX.DesktopServices/**/tests/*.csproj 
+                Tools/ImpliciX.Designer/**/tests/*.csproj 
+                Tools/ImpliciX.Monitor/**/tests/*.csproj
+              arguments: -c $(buildConfiguration) --filter TestCategory!=ExcludeFromCI --logger "trx" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+
+  - stage: publishMonitorApp
+    jobs:
+      - job: publishMonitorApp
+        pool:
+          vmImage: 'ubuntu-latest'
+        
+        variables:
+          buildConfiguration: 'Release'
+        steps:
+          - template: azure-pipelines-template-dotnet-setup.yml
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish ImpliciX Monitor for linux-x64
+            inputs:
+              command: 'publish'
+              publishWebProjects: false
+              projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.DesktopDesigner/src/ImpliciX.DesktopDesigner.csproj'
+              arguments: '--configuration $(BuildConfiguration) --framework net8.0 --runtime linux-x64 --self-contained --output $(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Linux /p:IsMonitor=True /p:PublishReadyToRun=true /p:FileVersion=$(Build.BuildNumber) /p:AssemblyVersion=$(Build.BuildNumber)'
+              zipAfterPublish: false
+              modifyOutputPath: false
+
+          - publish: '$(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Linux'
+            displayName: Publish ImpliciX Monitor for linux-x64 artifacts
+            artifact: 'ImpliciX_Monitor_linux_$(Build.BuildNumber)'
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish ImpliciX Monitor for win-x64
+            inputs:
+              command: publish
+              publishWebProjects: False
+              projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.DesktopDesigner/src/ImpliciX.DesktopDesigner.csproj'
+              arguments: '--configuration $(BuildConfiguration) --framework net8.0 --runtime win-x64 --self-contained --output $(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Windows /p:IsMonitor=True /p:PublishReadyToRun=false /p:FileVersion=$(Build.BuildNumber) /p:AssemblyVersion=$(Build.BuildNumber)'
+              zipAfterPublish: false
+              modifyOutputPath: false
+
+          - publish: '$(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Windows'
+            displayName: Publish ImpliciX Monitor for win-x64 artifacts
+            artifact: 'ImpliciX_Monitor_windows_$(Build.BuildNumber)'
+
+          - task: DotNetCoreCLI@2
+            displayName: Workload ImpliciX Monitor for Wasm
+            inputs:
+              command: custom
+              custom: workload
+              arguments: 'install wasm-tools'
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish ImpliciX Monitor for Wasm
+            inputs:
+              command: publish
+              publishWebProjects: False
+              projects: '$(Build.SourcesDirectory)/Tools/ImpliciX.Monitor/src/ImpliciX.WebMonitor.csproj'
+              arguments: '--configuration $(BuildConfiguration) --framework net8.0 --output $(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Wasm'
+              zipAfterPublish: false
+              modifyOutputPath: false
+
+          - publish: '$(Build.ArtifactStagingDirectory)/ImpliciX.Monitor.Wasm'
+            displayName: Publish ImpliciX Monitor for Wasm artifacts
+            artifact: 'ImpliciX_WebMonitor_Wasm_$(Build.BuildNumber)'

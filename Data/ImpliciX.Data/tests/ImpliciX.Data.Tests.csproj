@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
+    <PackageReference Include="NUnit" Version="3.13.2"/>
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2"/>
+    <PackageReference Include="NFluent" Version="2.8.0"/>
+    <PackageReference Include="Moq" Version="4.18.4"/>
+    <PackageReference Include="coverlet.collector" Version="3.1.0"/>
+  </ItemGroup>
+  <Import Project="..\..\..\Language.targets"/>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Runtime\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj"/>
+    <ProjectReference Include="..\..\..\Runtime\ImpliciX.TestsCommon\src\ImpliciX.TestsCommon.csproj"/>
+    <ProjectReference Include="..\src\ImpliciX.Data.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="package_examples\nominal_case.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\corrupted_package.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\nominal_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\current_release_dummy_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\fallback_release_dummy_manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\writer_nominal_case_content\Carte_BAS.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\writer_nominal_case_content\Carte_HAUT.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\writer_nominal_case_content\Carte_UE.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="package_examples\writer_nominal_case.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\SubFolder\file.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\SubFolder\example.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\SubFolder\SubFolder2\file2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\example.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\file.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\sample.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test_artefact\single_file_sample.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ColdStorage\examples\bug_incomplete_file.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ColdMetrics\examples\bug_incomplete_file.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ColdMetrics\examples\complete_file.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Remove="ColdMetrics\examples\empty.metrics"/>
+  </ItemGroup>
+</Project>

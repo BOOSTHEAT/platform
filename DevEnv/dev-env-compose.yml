@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  influxdb:
+    image: influxdb:1.8.1-alpine
+    container_name: influxdb
+    environment:
+        - INFLUXDB_DB=boiler
+    ports:
+        - "8086:8086"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/health"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s   
+
+  redis:
+    image: redis/redis-stack:latest
+    container_name: redis
+    ports:
+        - "6379:6379"

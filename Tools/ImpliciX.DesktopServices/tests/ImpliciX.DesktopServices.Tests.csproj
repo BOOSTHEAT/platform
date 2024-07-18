@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <Import Project="..\..\..\Language.targets"/>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Reactive.Testing" Version="5.0.0"/>
+    <PackageReference Include="Moq" Version="4.18.4"/>
+    <PackageReference Include="NFluent" Version="2.8.0"/>
+    <PackageReference Include="nunit" Version="3.13.2"/>
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
+    <PackageReference Include="ReactiveUI" Version="19.2.1"/>
+    <ProjectReference Include="..\src\ImpliciX.DesktopServices.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Projects/resources/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Projects\resources\DeviceCsProj\*"/>
+    <None Update="Resources\metricsCold\4fd23b47-fe6a-4573-9390-af6563a0f7e2.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\6ac8ebff-10d8-41c5-992f-e6cd06ad334c.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\6c2ca47b-9b54-44f9-8c16-7e0331144d93.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\8b431b67-07d8-4371-b6d9-de7f795e8de1.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\29cad6f4-176f-4153-98e0-fe8ce325c9d5.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\3893db86-d110-44a9-adde-57347b32367d.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\5071399f-d9e8-4b1c-90c6-2e1fed0c6ce9.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\cfafb5a7-a7e3-442b-ab47-4bd8198f816c.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\metricsCold\ee6d5f7e-f042-48ab-ac76-e9c8aea01706.metrics">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

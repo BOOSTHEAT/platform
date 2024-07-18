@@ -1,0 +1,10 @@
+Module Widgets
+
+Box 1.0 Box.qml
+CustomSwitch 1.0 CustomSwitch.qml
+MainTextFormat 1.0 MainTextFormat.qml
+Navigator 1.0 Navigator.qml
+OnOffButton 1.0 OnOffButton.qml
+DropDownList 1.0 DropDownList.qml
+ClickableContainer 1.0 ClickableContainer.qml
+TextBox 1.0 TextBox.qml

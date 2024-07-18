@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - Tools/WebhelpBuilder/oxygen/Dockerfile
+
+variables:
+  - name: tag
+    value: |
+      1.0
+      latest
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: GenerateDockerOxygenImage
+    displayName: Generate docker oxygen image
+    
+    steps:
+      - task: Docker@2
+        displayName: Login ImpliciX Container Registry
+        inputs:
+          command: login
+          containerRegistry: 'ImpliciX Container Registry'
+
+      - task: Docker@2
+        displayName: Build oxygen image
+        inputs:
+          command: 'build'
+          containerRegistry: 'ImpliciX Container Registry'
+          repository: 'oxygen'
+          Dockerfile: 'Tools/WebhelpBuilder/oxygen/Dockerfile'
+          tags: $(tag)
+
+      - task: Docker@2
+        displayName: Publish oxygen image
+        inputs:
+          command: 'push'
+          containerRegistry: 'ImpliciX Container Registry'
+          repository: 'oxygen'
+          tags: $(tag)

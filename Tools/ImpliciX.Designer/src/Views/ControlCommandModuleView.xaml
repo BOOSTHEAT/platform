@@ -1,0 +1,16 @@
+<UserControl x:Class="ImpliciX.Designer.Views.ControlCommandModuleView" 
+  xmlns="https://github.com/avaloniaui" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400">
+
+  <DockPanel LastChildFill="True" Classes="screen pdf" >
+    <StackPanel Classes="screen pdf" DockPanel.Dock="Top">
+      <WrapPanel Classes="screen pdf">
+        <TextBlock Text="State machines count:" Classes="screen pdf" />
+        <TextBlock Text="{Binding Definitions.Length}" Classes="screen pdf" />
+      </WrapPanel>
+    </StackPanel>
+  </DockPanel>
+</UserControl>

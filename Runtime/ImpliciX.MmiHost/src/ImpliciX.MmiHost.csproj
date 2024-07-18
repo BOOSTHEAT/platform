@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+    <Import Project="..\..\..\Language.targets" />
+    <ItemGroup>
+      <ProjectReference Include="..\..\ImpliciX.RuntimeFoundations\src\ImpliciX.RuntimeFoundations.csproj" />
+      <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+      <ProjectReference Include="..\..\..\Data\ImpliciX.Data\src\ImpliciX.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Tmds.DBus" Version="0.9.1" />
+    </ItemGroup>
+
+</Project>

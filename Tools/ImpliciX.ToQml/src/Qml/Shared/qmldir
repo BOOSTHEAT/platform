@@ -1,0 +1,9 @@
+Module Shared
+
+Js 1.0 JsUtils.js
+Logger 1.0 Logger.js
+M 1.0 moment-with-locales.mjs
+MTZ 1.0 moment-timezone-with-data-10-year-range.mjs
+singleton UiConst 1.0 UiConst.qml
+singleton IOContext 1.0 IOContext.qml
+Unit 1.0 Unit.js

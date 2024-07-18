@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700" Width="700" Height="400"
+        x:Class="ImpliciX.Designer.Views.LoadDeviceDefinitionView" Icon="/Assets/avalonia-logo.ico"
+        Title="Load Device Definition"
+>
+    
+    
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto">
+        <DataGrid Grid.Row="0" Grid.Column="0"
+                  ItemsSource="{Binding References}"
+                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" IsReadOnly="True" ColumnWidth="Auto"
+                  CanUserResizeColumns="True" CanUserSortColumns="True" FontSize="8" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150" />
+                <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="150" />
+                <DataGridTextColumn Header="Path" Binding="{Binding OriginalSourcePath}" Width="400" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Load from file..." Command="{Binding LoadFromFile}" Width="120" Margin="10" />
+            <Button Content="Ok" Command="{Binding Select}" IsEnabled="{Binding CanOpenDefinition}" Width="80" Margin="10" />
+            <Button Content="Cancel" Command="{Binding Cancel}" Width="80" Margin="10" />  
+        </StackPanel>
+    </Grid>
+    
+</Window>

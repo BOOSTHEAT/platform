@@ -1,0 +1,12 @@
+@Configuration
+
+Feature: Configuration
+  As Application Configurator
+  I want to add a TimeMath module to the configuration
+  So that I will be able to view TimeMath for a time period
+
+  Scenario: Adding TimeMath module to the configuration
+    Given I have a simple "dev" profil
+    And I add "TimeMath" to the "dev" profil
+    When I start the "Calliper" application in "dev" mode
+    Then the application does not start

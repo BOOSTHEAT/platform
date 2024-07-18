@@ -1,0 +1,273 @@
+<UserControl x:Class="ImpliciX.Designer.Views.LivePropertiesView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ix="using:ImpliciX.Designer.ViewModels"
+             xmlns:designViewModels="using:ImpliciX.Designer.DesignViewModels"
+             x:DataType="ix:LivePropertiesViewModel"
+             mc:Ignorable="d" d:DesignWidth="550"
+             d:DesignHeight="500">
+  <Design.DataContext>
+    <designViewModels:LivePropertiesDataContext />
+  </Design.DataContext>
+  <UserControl.Resources>
+    <StreamGeometry x:Key="Delta">M19,21,11.5,4.13M20,21,12,3,4,21Z</StreamGeometry>
+    <StreamGeometry x:Key="Thermometer">M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z</StreamGeometry>
+    <ix:PercentageConverter x:Key="PercentageConverter" />
+    <StreamGeometry x:Key="ErrorSign">M37 14l-24 44h48Zm2 12h-4l2 20Zm-2 24-2 2 2 2 2-2Z</StreamGeometry>
+  </UserControl.Resources>
+  <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*,Auto,Auto">
+    <TextBox Grid.Row="0" Grid.Column="0" Watermark="Search property" Text="{Binding Search, Mode=TwoWay}" />
+    <Button Grid.Row="0" Grid.Column="1" Content="⌫" Background="Transparent" Command="{Binding EraseSearch}" />
+    <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Name="CurrentProperties" ItemsSource="{Binding Items}"
+              IsReadOnly="True" ColumnWidth="Auto" CanUserResizeColumns="True" CanUserSortColumns="True"
+              LoadingRow="DefineClassesForRow"
+              Classes.IsConnected="{Binding IsConnected}"
+              FontSize="8">
+      <DataGrid.Styles>
+        <Style Selector="DataGrid:not(.IsConnected)">
+          <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
+          <Style Selector="^ StackPanel.Editor">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="IsVisible" Value="False" />
+            <Style Selector="^ DataGridRow DataGridCell">
+              <Setter Property="Background" Value="White" />
+              <Setter Property="Foreground" Value="Black" />
+            </Style>
+
+          </Style>
+        </Style>
+        <Style Selector="DataGrid:not(.Function) DataGridRow:nth-child(even)">
+          <Setter Property="Background" Value="Lavender" />
+        </Style>
+        <Style Selector="DataGrid.Function">
+          <Style Selector="^ DataGridRow:nth-child(odd)">
+            <Setter Property="Background" Value="Navy" />
+          </Style>
+          <Style Selector="^ DataGridRow:nth-child(even)">
+            <Setter Property="Background" Value="Blue" />
+          </Style>
+        </Style>
+        <Style Selector="DataGrid.IsConnected">
+          <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+          <Style Selector="^ DataGridRow:not(.IsEditable) StackPanel.Editor">
+            <Setter Property="IsVisible" Value="False" />
+          </Style>
+          <Style Selector="^ DataGridRow.IsEditable">
+            <Style Selector="^:selected StackPanel.Editor">
+              <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^:not(:selected) StackPanel.Editor">
+              <Setter Property="IsVisible" Value="False" />
+            </Style>
+          </Style>
+        </Style>
+        <Style Selector="TextBlock">
+          <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Path">
+          <Setter Property="Stroke" Value="Black" />
+          <Setter Property="Data" Value="" />
+          <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="DataGridRow:selected">
+          <Setter Property="Background" Value="Aqua" />
+          <Style Selector="^ Path">
+            <Setter Property="Stroke" Value="White" />
+          </Style>
+        </Style>
+        <Style Selector="DataGridRow">
+          <Style Selector="^.AsUnit">
+            <Setter Property="FontWeight" Value="Bold" />
+          </Style>
+          <Style Selector="^.IsEditable">
+            <Style Selector="^ DataGridCell.IsConnected">
+              <Setter Property="Cursor" Value="Hand" />
+            </Style>
+            <Setter Property="FontStyle"
+                    Value="Italic" />
+          </Style>
+          <Style Selector="^.DifferentialTemperature, ^.DifferentialPressure">
+            <Style Selector="^ Path">
+              <Setter Property="Data" Value="{StaticResource Delta}" />
+              <Setter Property="IsVisible" Value="True" />
+            </Style>
+          </Style>
+          <Style Selector="^.Temperature, ^.DifferentialTemperature">
+            <Style Selector="^ Path">
+              <Setter Property="Data" Value="{StaticResource Thermometer}" />
+              <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" K" />
+            </Style>
+          </Style>
+          <Style Selector="^.Percentage">
+            <Style Selector="^ TextBlock[Name=Value]">
+              <Setter Property="Text"
+                      Value="{Binding Summary, Mode=OneWay, Converter={StaticResource PercentageConverter},ConverterParameter=’0.00#### %’}" />
+            </Style>
+          </Style>
+          <Style Selector="^:not(.Percentage)">
+            <Style Selector="^ TextBlock[Name=Value]">
+              <Setter Property="Text"
+                      Value="{Binding Summary, Mode=OneWay}" />
+            </Style>
+          </Style>
+          <Style Selector="^.Length">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" m" />
+            </Style>
+          </Style>
+          <Style Selector="^.Energy">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" J" />
+            </Style>
+          </Style>
+          <Style Selector="^.Duration">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" s" />
+            </Style>
+          </Style>
+          <Style Selector="^.Flow">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" m³/s" />
+            </Style>
+          </Style>
+          <Style Selector="^.Mass">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" Kg" />
+            </Style>
+          </Style>
+          <Style Selector="^.Power">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" W" />
+            </Style>
+          </Style>
+          <Style Selector="^.Pressure, ^.DifferentialPressure">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" Pa" />
+            </Style>
+          </Style>
+          <Style Selector="^.Torque">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" N.m" />
+            </Style>
+          </Style>
+          <Style Selector="^.Volume">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" m³" />
+            </Style>
+          </Style>
+          <Style Selector="^.Voltage">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" V" />
+            </Style>
+          </Style>
+          <Style Selector="^.AngularSpeed">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" rad/s" />
+            </Style>
+          </Style>
+          <Style Selector="^.RotationalSpeed">
+            <Style Selector="^ TextBlock[Name=Unit]">
+              <Setter Property="Text" Value=" rpm" />
+            </Style>
+          </Style>
+        </Style>
+        <Style Selector="DataGridDetailsPresenter">
+          <Style Selector="^ ComboBox">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="{DynamicResource TextControlSelectionHighlightColor}" />
+            <Style Selector="^ TextBlock">
+              <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
+            </Style>
+          </Style>
+          <Style Selector="^ TextBox">
+            <Style Selector="^:error">
+              <Setter Property="Watermark" Value="Fix Error" />
+              <Style Selector="^ ContentControl">
+                <Setter Property="Background" Value="Gold" />
+                <Setter Property="Cursor" Value="Arrow" />
+                <Style Selector="^ Path">
+                  <Setter Property="Data" Value="{StaticResource ErrorSign}" />
+                  <Setter Property="Stroke" Value="{StaticResource ErrorColor}" />
+                  <Setter Property="Fill" Value="{StaticResource ErrorLowBrush}" />
+                  <Setter Property="StrokeThickness" Value="1" />
+
+                </Style>
+              </Style>
+            </Style>
+            <Setter Property="Watermark" Value="Enter new value..." />
+            <Setter Property="UseFloatingWatermark" Value="True" />
+            <Setter Property="Width" Value="110" />
+          </Style>
+        </Style>
+      </DataGrid.Styles>
+
+      <DataGrid.Columns>
+        <DataGridTemplateColumn CellStyleClasses="IsConnected">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate DataType="ix:LivePropertyViewModel">
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <!-- Ѻ ⬆ -->
+                <Button Content="o" Background="Transparent" BorderThickness="0"
+                        Command="{Binding SearchUrn}" IsVisible="{Binding IsInModel}" />
+              </StackPanel>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn CellStyleClasses="IsConnected" Header="URN">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate DataType="ix:LivePropertyViewModel">
+              <StackPanel
+                Orientation="Vertical"
+                HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                  <Path Name="UnitIcon"
+                        Width="8"
+                        Margin="1,0,1,0"
+                        StrokeJoin="Round"
+                        StrokeThickness="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Stretch="Uniform" />
+                  <TextBlock Name="Urn" Text="{Binding Urn.Value, Mode=OneWay}" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel
+                  Classes="Editor"
+                  Classes.IsEditable="{Binding IsEditable}"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  KeyDown="InputElement_OnKeyDown">
+                  <!-- IsVisible="{Binding IsEditable}" -->
+                  <!-- Margin="0 0 50 0" -->
+                  <ContentControl
+                    HorizontalAlignment="Right"
+                    HorizontalContentAlignment="Right"
+                    Content="{Binding SelectedItem, ElementName=CurrentProperties }" />
+                  <Button Content="SET"
+                          IsEnabled="{Binding IsValidated}"
+                          Command="{Binding SetNewValue}"
+                          IsVisible="{Binding  !IsFunction}"
+                          IsDefault="True" />
+                </StackPanel>
+              </StackPanel>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn CellStyleClasses="IsConnected" Header="Value">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate DataType="ix:LivePropertyViewModel">
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <TextBlock Name="Value" />
+                <TextBlock Name="Unit" Classes.Unit="True" />
+              </StackPanel>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>

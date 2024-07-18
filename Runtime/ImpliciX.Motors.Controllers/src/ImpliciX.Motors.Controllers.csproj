@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <Import Project="..\..\..\Language.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\ImpliciX.SharedKernel.SerialApi2\src\ImpliciX.SharedKernel.SerialApi2.csproj" />
+    <ProjectReference Include="..\..\ImpliciX.Driver.Common\src\ImpliciX.Driver.Common.csproj" />
+    <ProjectReference Include="..\..\ImpliciX.SharedKernel\src\ImpliciX.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>

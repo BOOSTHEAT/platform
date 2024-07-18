@@ -1,0 +1,14 @@
+steps:
+
+- template: azure-pipelines-template-dotnet-setup.yml
+
+- bash: |
+    set -x
+    languageDLL=$(echo ~/.nuget/packages/implicix.language/*/lib/netstandard2.1/*.dll)
+    trimLeft=${languageDLL#*implicix.language/}
+    languageVersion=${trimLeft%/lib*}
+    az pipelines build tag add --build-id ${BUILD_BUILDID} --tags "Language=$languageVersion"
+    test -n "$languageVersion"
+  displayName: Tag build with language version
+  env:
+    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)

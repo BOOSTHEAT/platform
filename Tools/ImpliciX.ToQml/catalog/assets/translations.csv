@@ -1,0 +1,13 @@
+key,en,fr,de
+DropDownPresence.Yo,Yes,Oui,Ja
+DropDownPresence.Nein,No,Non,Nein
+DropDownPresence.Benleu,Maybe,Peut-être,Vielleicht
+:user_text_1,The small text,Le petit texte,Der kleine Text
+:user_text_2,The big text,Le grand texte,Der große Text
+DropDownLocale.en_GB,en_GB,en_GB,en_GB
+DropDownLocale.fr_FR,fr_FR,fr_FR,fr_FR
+DropDownLocale.de_DE,de_DE,de_DE,de_DE
+DropDownLocale.fr_BE,fr_BE,fr_BE,fr_BE
+DropDownTimeZone.Europe__Paris,Europe__Paris,Europe__Paris,Europe__Paris
+DropDownTimeZone.America__New_York,America__New_York,America__New_York,America__New_York
+DropDownTimeZone.Asia__Bangkok,Asia__Bangkok,Asia__Bangkok,Asia__Bangkok

@@ -1,0 +1,69 @@
+{
+  "content": {
+    "APPS": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.8.23.1",
+        "revision": "2021.8.23.1",
+        "target": "boiler_app",
+        "filename": "boiler_app.zip"
+      },
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.8.6.1",
+        "revision": "2021.8.6.1",
+        "target": "boiler_gui",
+        "filename": "BOOSTHEAT.Boiler.GUI"
+      }
+    ],
+    "MCU": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu_iu",
+        "filename": "Carte_HAUT.bin"
+      },
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu_heat_pump",
+        "filename": "Carte_BAS.bin"
+      },
+      {
+        "part-number": 99999999999,
+        "hrRevision": "2021.6.15.1",
+        "revision": "2021.6.15.1",
+        "target": "mcu_eu",
+        "filename": "Carte_UE.bin"
+      }
+    ],
+    "BSP": [
+      {
+        "part-number": 99999999999,
+        "hrRevision": 20210804.1,
+        "revision": "20210804.1",
+        "target": "boiler_bsp",
+        "filename": "update-bundle-colibri-imx7-emmc.raucb"
+      }
+    ]
+  },
+  "device": "BOOSTHEAT.20_V2",
+  "sha256": "a7c0f2cafd266277c2987d0e88a0a384b402224548806aee9f5734627cec0407",
+  "date": "2021-08-23T10:04:24",
+  "Documentation": {
+    "Files": [
+      {
+        "target": "Configuration",
+        "filename": "datamodel.2.3.4.613.json"
+      },
+      {
+        "target": "AlarmDatabase",
+        "filename": "alarmdatabase.2.3.4.613.json"
+      }
+    ],
+    "Version": "2.3.4.613"
+  },
+  "revision": "2.3.4.613"
+}

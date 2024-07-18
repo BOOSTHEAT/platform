@@ -1,0 +1,13 @@
+apiVersion: 1
+datasources:
+  - name: impliciX
+    type: simpod-json-datasource
+    access: Server
+    url: http://host.docker.internal:5283
+    editable: false
+    isDefault: true
+  - name: impliciX-Podman
+    type: simpod-json-datasource
+    access: Server
+    url: http://host.containers.internal:5283
+    editable: false

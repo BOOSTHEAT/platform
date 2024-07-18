@@ -1,0 +1,6 @@
+00:00:00,command,general:labmode:START,virtual
+
+00:00:01,properties,production:heat_pump:mpg:pressure:status,Success
+00:00:01,properties,production:heat_pump:mpg:pressure:measure,300000
+
+00:00:5,properties,production:heat_pump:mpg:pressure:measure,10000
